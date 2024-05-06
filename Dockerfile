@@ -21,7 +21,7 @@ apt-get clean
 
 # copy necessary files
 ## app folder
-COPY /example-app ./app
+COPY . /app
 
 # install packages
 RUN R -e "install.packages(pkgs=c('shiny','haven','dplyr','tidyr','hrbrthemes','echarts4r','shinydashboard','shinydashboardPlus','stringr','shinyjs','DT','htmlwidgets'), repos='https://cran.rstudio.com/')"

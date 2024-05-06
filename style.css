@@ -1,0 +1,344 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+
+/* Corporate Colors */
+:root {
+    --primary-dark: #071A2D;
+    --primary: #14477A;
+    --lighter-gray: #FEFEFE;
+    --light-gray: #F5F5F5;
+    --accent-gold: #DCC159;
+    --light-gold: #FFD469;
+    --side-padding:6.14%;
+}
+
+
+/* General Styles */
+body, .content-wrapper, .right-side {
+    background-color: var(--lighter-gray);
+    overflow-wrap: break-word;
+    font-family:'Assistant',Sans-Serif !important;
+    fons-size:24px;
+    color:var(--primary-dark);
+}
+
+@media screen and (max-width: 63.99875em) {
+
+    body{
+        font-size:16px;
+    }
+    :root{
+        --side-padding:3.5%;
+    }
+}
+
+body,h1,h2,h3,h4,h5,h6{
+  font-family:'Assistant',Sans-Serif !important;
+}
+h1,h2,h3,h4,h5,h6{
+  font-weight: 500;
+
+}
+ul{
+   padding-left: 20px;
+}
+/* Header Bar */
+.skin-blue .main-header .navbar, .skin-blue .main-header .logo {
+    background-color: var(--primary-dark);
+}
+
+/* Sidebar Styles */
+.skin-blue .main-sidebar {
+    background-color: var(--light-gray);
+}
+
+.skin-blue .sidebar-menu>li>a {
+    color: var(--primary-dark);
+}
+
+.skin-blue .sidebar-menu>li:hover>a {
+    color: var(--light-gray);
+    background-color: var(--primary-dark);
+}
+.main-header .logo{
+  text-align: left !important;
+}
+
+/* General Styles */
+
+.wrapper {
+    max-width: 1700px;
+    margin: 0;
+}
+
+.dropdown-menu {
+    min-width: 250px;
+}
+
+.popover {
+    max-width: 70%;
+}
+
+/* Navbar */
+.skin-blue .main-header .navbar, .skin-blue .main-header .logo {
+    background-color: var(--primary-dark);
+    overflow-wrap: break-word;
+}
+
+.skin-blue .main-sidebar .sidebar .sidebar-menu .active a {
+    background-color: var(--light-gray); /* Change this to your desired color */
+    color: var(--primary-dark); /* Change the text color if needed */
+}
+
+
+/* Tabsets */
+.tabbable > .nav > li > a {
+    background-color: var(--light-gold);
+    color:  var(--primary-dark);
+    font-weight: 500;
+}
+
+.tabbable > .nav > li[class=active] > a {
+    background-color: var(--primary-dark);
+    color: white;
+    font-weight: 500;
+  
+}
+
+/* Headers */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-dark);
+    overflow-wrap: break-word;
+
+    margin-bottom:30px !important;
+}
+
+h1 {
+   /* font-weight: 700;*/
+    font-size: 40px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h2, h3 {
+ /*   font-weight: 700;*/
+    font-size: 28px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+h4 {
+  /*  font-weight: 700;*/
+    font-size: 22px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+h5 {
+  /*  font-weight: 700;*/
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 8px;
+}
+
+h6 {
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    /*font-style: italic;*/
+   
+}
+
+/* Red Line */
+hr.redLine {
+    width: 150px;
+    text-align: left;
+    margin-left: 0;
+    margin-top: -10px;
+    margin-bottom: 25px;
+    border-top: 4px solid var(--accent-gold);
+}
+
+/* Additional Styles */
+/* ... [rest of the CSS remains unchanged] */
+
+/* Additional Styles */
+
+/* Carousel */
+.carousel-control {
+    color: var(--primary-dark);
+    opacity: 1;
+}
+
+.carousel-control:focus, .carousel-control:hover {
+    color: var(--accent-gold);
+}
+
+/* Boxes */
+.box {
+    border: none;
+    box-shadow: none;
+}
+
+.box.box-primary {
+    border-top-color: var(--primary-dark);
+}
+
+.box-header .box-title, .box-header {
+    font-weight: 700 !important;
+    font-size: 22px;
+}
+
+/* Hover-Box */
+.box.box-success {
+    border-top-color: var(--primary-dark);
+    box-shadow: 2px 2px 2px rgba(0,0,0,.1);
+}
+
+.box.box-success:hover {
+    border-top-color: var(--primary-dark);
+    margin-top: 1px;
+    margin-left: 1px;
+    box-shadow: 4px 4px 4px rgba(0,0,0,.1);
+}
+
+/* Fun Facts */
+.small-box p {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.small-box h3 {
+    color: white;
+    font-size: 34px;
+}
+
+/* Invisible Box */
+.box.box-danger {
+    border-top-color: var(--light-gray);
+    box-shadow: none;
+}
+
+/* Sidebar Menu */
+.skin-blue .sidebar-menu>li.active>a, .skin-blue .sidebar-menu>li:hover>a {
+    border-left-color: var(--primary-dark);
+}
+
+/* Sliders */
+.irs-bar-edge, .irs-bar {
+    background: transparent;
+}
+
+.irs.min, .irs.max, .irs-single {
+    background: var(--primary-dark);
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+    .tab-content>.tab-pane {
+        width: 100%;
+    }
+}
+
+/* Content Wrapper */
+.content, .content-wrapper {
+    background-color: var(--lighter-gray) !important;
+    overflow-wrap: break-word;
+    width: 100%;
+}
+
+/* Body */
+.content-wrapper, .right-side {
+    background-color: var(--lighter-gray);
+    overflow-wrap: break-word;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* Links */
+a {
+    color: var(--primary-dark);
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* Popover */
+.popover {
+    max-width: 350px;
+}
+
+/* Lists */
+.svListen {
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 15px;
+    line-height: 160%;
+}
+
+/* Buttons */
+.btn-default {
+    background-color: white !important;
+    color: var(--primary-dark) !important;
+    border-color: var(--primary-dark) !important;
+    border-radius: 0;
+    outline:none !important;
+    
+}
+.btn-default.active{
+  background: var(--primary-dark) !important;
+  color:white !important;
+}
+.row:nth-child(even) {
+   background-color: var(--light-gray);
+}
+.row{
+  padding:60px var(--side-padding);
+}
+.nav-tabs{
+  border:none;
+}
+.nav-tabs>li>a{
+  font-size:16px;
+  border:none !important;
+  margin:0;
+  border-radius:0;
+  padding:20px 10px;
+}
+ul.nav-tabs{
+  display:flex;
+  flex-wrap: wrap;
+}
+.nav-tabs>li {
+flex-grow:1;
+text-align: center;
+
+  
+}
+.yellow{
+  background:var(--light-gold) !important;
+}
+.blue{
+  color:white !important;
+  background:var(--primary-dark) !important;
+}
+.blue h1,.blue h2,.blue h3,.blue h4,.blue h5,.blue h6,.blue a{
+  color:white !important;
+}
+#main,#topRow,#top,#topRow > .col-sm-12{
+  margin:0;
+  padding:0;
+}
+
+

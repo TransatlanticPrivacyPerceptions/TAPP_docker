@@ -24,7 +24,7 @@ apt-get clean
 COPY . /app
 
 # install packages
-RUN R -e "install.packages(pkgs=c('pacman', 'shiny','haven','dplyr','tidyr','hrbrthemes','echarts4r','shinydashboard','shinydashboardPlus','stringr','shinyjs','DT','htmlwidgets'), repos='https://cran.rstudio.com/')"
+RUN R -e "install.packages(pkgs=c('pacman', 'shiny','haven','dplyr','tidyr','hrbrthemes','echarts4r','shinydashboard','shinydashboardPlus','stringr','shinyjs','openxlsx','DT','htmlwidgets','readxl','ggplot2','highcharter'), repos='https://cran.rstudio.com/')"
 
 # expose port
 EXPOSE 3838

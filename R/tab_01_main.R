@@ -1,4 +1,5 @@
 load("datareadyforshiny.rds")
+
 erstelleTab_front <- function() { 
   tabItem("front",class="active",
           fluidPage(id="main",
@@ -8,220 +9,177 @@ erstelleTab_front <- function() {
                                       tabPanel(title = "Trend Analysis",
                                                fluidRow(
                                                  column(width=12,  
-                                                        h3("Digital Privacy Laws: Sufficient or Lacking?"),
-                                                        h4("Do you think current digital privacy laws in your region* cover 
-                                            more areas than needed, fewer areas than needed, or all areas needed?"),
-                                                        h5(HTML("* The term 'region' was specified to each expert according to their 
-                                            area of expertise, with U.S. experts being asked about the U.S., 
-                                            EU experts about the EU, and experts from individual countries in 
-                                            Europe about their specific country"))
+                                                        h3(HTML("Comprehensiveness of digital privacy laws")),
+                                                        h4(HTML(" Increasing coverage, but improvements required ")),
+                                                        h5(HTML("<i>Question: Do you think current digital privacy laws in your region [of expertise] cover more areas than needed,
+                                                                fewer areas than needed, or all areas needed?</i>"))
                                                  ),
-                                                 column(width = 3,
-                                                        radioButtons(
-                                                          width = 300,
-                                                          inputId = "law_breadth.category",
-                                                          label = "Please choose a category",
-                                                          choices = levels(law_breadth$category), # Use levels to maintain order
-                                                          selected = "Practitioners\nEurope"
-                                                        )),
-                                                 column(width = 5,
-                                                        echarts4rOutput("law_breadth.chart")
-                                                        
+                                                 column(width = 4,
+                                                        highchartOutput("law_breadth_chart_Europe")
                                                  ),
-                                                 column( width= 4,
-                                                         actionButton("Text_law_breadth", "Show/Hide Interpretation"),
-                                                         uiOutput("interpretation_law_breadth"),
-                                                         br(),
-                                                         actionButton("toggleText.law_breadth_sample", "Show/Hide Sample Details"),
-                                                         uiOutput("interpretation.law_breadth_sample")
-                                                 )),
-                                               # 
-                                               # fluidRow(class="blue",
-                                               #   column(width = 6,
-                                               #          h4(HTML("What areas are currently covered that you feel shouldn’t be?")),
-                                               #          actionButton(
-                                               #            width = "100%",
-                                               #            inputId = "law_breadth_more",
-                                               #            label = "Display Responses (5 out of 5 total answers)"),
-                                               #          uiOutput("law_breadth_m_oe")),
-                                               #   #column(width = 1),
-                                               #   column(width = 6,
-                                               #          h4(HTML("What areas are NOT currently covered that you feel should be? ")),
-                                               #          actionButton(
-                                               #            width = "100%",
-                                               #            inputId = "law_breadth_less",
-                                               #            label = "Display Responses (random 5 out of 45 total answers)"),
-                                               #          uiOutput("law_breadth_f_oe"))
-                                               #   
-                                               # ),
+                                                 column(width = 4,
+                                                        highchartOutput("law_breadth_chart_USA")
+                                                 ),
+                                                 column(width = 4, 
+                                                        actionButton("toggleText.law_breadth_sample", "Show/Hide Sample Details"),
+                                                        uiOutput("interpretation.law_breadth_sample"))
+                                               ),
                                                fluidRow(
                                                  column(width = 12,
-                                                        h3("Are Digital Privacy Laws Enforced?"),
-                                                        h4(HTML("Are the digital privacy practices required by your region's* law enforced …")),
-                                                        h5(HTML("* The term 'region' was specified to each expert according to their 
-                                            area of expertise, with U.S. experts being asked about the U.S., 
-                                            EU experts about the EU, and experts from individual countries in 
-                                            Europe about their specific country"))),
-                                                 column(width = 3,
-                                                        radioButtons(
-                                                          width = 300,
-                                                          inputId = "Enforcement.stacked.bar.chart15",
-                                                          label = "Please choose a category",
-                                                          choices = levels(orgs_rating_priv.15$category), # Use levels to maintain order 
-                                                          selected = "Practitioners\nUSA"
-                                                        )
+                                                        h3(HTML("Enforcement of digital privacy practices")),
+                                                        h4(HTML("Mixed results by region")),
+                                                        h5(HTML("<i>Question: Are the digital privacy practices required by your region's [of expertise]
+                                                   law enforced?</i>"))
                                                  ),
-                                                 column(width = 5,
-                                                        echarts4rOutput("Enforcement.chart15")
+                                                 column(width = 4,
+                                                        highchartOutput("Enforcement_chart15_Europe")
                                                  ),
-                                                 column( width= 4,
-                                                         actionButton("toggleText.law_enforcement", "Show/Hide Interpretation"),
-                                                         uiOutput("interpretation.law_enforcement"),
-                                                         br(),
-                                                         actionButton("toggleText.law_enforcement_sample", "Show/Hide Sample Details"),
-                                                         uiOutput("interpretation.law_enforcement_sample")
+                                                 column(width = 4,
+                                                        highchartOutput("Enforcement_chart15_USA")
+                                                 ),
+                                                 column(width = 4,
+                                                        actionButton("toggleText.law_enforcement_sample", "Show/Hide Sample Details"),
+                                                        uiOutput("interpretation.law_enforcement_sample")
                                                  )
                                                ),
                                                fluidRow(
                                                  column(width=12,  
-                                                        h3("Organizations’ Digital Privacy Policies and Practices"),
-                                                        h4("How would you rate the performance of these firms/agencies in protecting people's privacy")
+                                                        h3(HTML("Stakeholder ratings of organizations’ privacy protection performance")),
+                                                        h5(HTML("<i>Question: How would you rate the performance of these firms/agencies in protecting people's privacy?<br>Answer options: Excellent, Good, Fair, Poor</i>"))
                                                  ),
-                                                 column(width = 3,
+                                                 column(width = 2,
                                                         radioButtons(
                                                           width = 300,
                                                           inputId = "Organisations.stacked.bar.chart",
-                                                          label = "Please choose an organisation",
+                                                          label = "Please choose a firm/agency",
                                                           choices = unique(orgs_rating_priv_update$Organisation), # Use levels to maintain order
-                                                          selected = "Google"
-                                                        )),
-                                                 column(width = 5,
-                                                        echarts4rOutput("Organisations1.chart")
-                                                        
-                                                 ),
-                                                 column( width= 4,
-                                                         actionButton("toggleText", "Show/Hide Interpretation"),
-                                                         uiOutput("interpretation"),
-                                                         br(),
-                                                         actionButton("toggleText.organisations_sample", "Show/Hide Sample Details"),
-                                                         uiOutput("interpretation.organisations_sample")
-                                                 )
-                                               ),
-                                               fluidRow(
-                                                 column(width=12,
-                                                        h3("Best Practices and Admired Policies"),
-                                                        h4("What, if any, organization(s) would you say provide a model for organizational best practices regarding digital privacy?"),
-                                                        h4("What practices by this/these organizations do you particularly admire?"),
-                                                 ),
-                                                 column(width = 3,
-                                                        selectInput(
-                                                          width = 500,
-                                                          inputId = "Best.pratices",
-                                                          label = "Please choose an organisation",
-                                                          choices = sort(unique(best_practice$org_model_oe)),
                                                           selected = "Apple"
                                                         )),
                                                  column(width = 4,
-                                                        uiOutput("opinions")
-
+                                                        highchartOutput("Organisations1_chart_Europe")
                                                  ),
+                                                 column(width = 4,
+                                                        highchartOutput("Organisations1_chart_USA")
+                                                 ),
+                                                 column(width = 2),
+                                                 column(width = 4,
+                                                        actionButton("toggleText.organisations_sample", "Show/Hide Sample Details"),
+                                                        uiOutput("interpretation.organisations_sample")
+                                                 )
                                                ),
                                                fluidRow(
                                                  column(width = 12,
-                                                        h3("Privacy Priorities"),
-                                                        h4(HTML("How would you rank the importance of the following approaches to protecting people’s digital privacy?")),),
-                                                 column(width = 3,
-                                                        radioButtons(
-                                                          width = 500,
-                                                          inputId = "Priorities.input",
-                                                          label = "Please choose a category",
-                                                          choices = levels(priorities$Priorities),
-                                                          selected = "Giving individuals control over their data"
+                                                        h3(HTML("Most important approach in protecting people‘s digital privacy")),
+                                                        h4(HTML("Adapting privacy laws to technological developments")),
+                                                        h5(HTML("<i>Question: How would you rank the importance of the following approaches to protecting people’s digital privacy?<br>Answer options: Adapting privacy laws to technological developments
+                                                               </i>")
                                                         )),
-                                                 column(width = 6,
-                                                        echarts4rOutput("priorities.chart")
+                                                 column(width = 4,
+                                                        highchartOutput("priorities_chart_ap1_Euro")
                                                  ),
-                                                 column( width= 3,
-                                                         actionButton("toggleText.priorities", "Show/Hide Interpretation"),
-                                                         uiOutput("interpretation.priorities"),
-                                                         br(),
-                                                         actionButton("toggleText.priorities_sample", "Show/Hide Sample Details"),
-                                                         uiOutput("interpretation.priorities_sample")
+                                                 column(width = 4,
+                                                        highchartOutput("priorities_chart_ap1_USA")
+                                                 ),
+                                                 column(width = 4,
+                                                        actionButton("toggleText.priorities_sample1", "Show/Hide Sample Details"),
+                                                        uiOutput("interpretation.priorities_sample1")
                                                  )
                                                ),
+                                               fluidRow(
+                                                 column(width = 12,
+                                                        h3(HTML("Most important approach in protecting people‘s digital privacy")),
+                                                        h4(HTML("Giving individuals control over their data")),
+                                                        h5(HTML("<i>Question: How would you rank the importance of the following approaches to protecting people’s digital privacy?<br>Answer options: Giving individuals control over their data</i>"))
+                                                 ),
+                                                 column(width = 4,
+                                                        highchartOutput("priorities_chart_ap2_Euro")
+                                                 ),
+                                                 column(width = 4,
+                                                        highchartOutput("priorities_chart_ap2_USA")
+                                                 ),
+                                                 column(width = 4,
+                                                        actionButton("toggleText.priorities_sample2", "Show/Hide Sample Details"),
+                                                        uiOutput("interpretation.priorities_sample2")
+                                                 )
+                                               )
                                                
                                       ),
                                       tabPanel(title = "Wave 3 (December 2023)", #####  WAVE 3
                                                fluidRow(
                                                  column(width = 12,
-                                                        h3("Generative AI and Privacy Policy"),
-                                                        h4(HTML("Has the rise of generative AI changed the way you think about privacy policy?")),),
-                                                 column(width = 7,
-                                                        echarts4rOutput("gen_AI.chart")
+                                                        h3(HTML("Generative AI’s influence on stakeholder views of privacy policy")),
+                                                        h4(HTML("Majority of stakeholders anticipate change")),
+                                                        h5(HTML("<i>Question: Has the rise of generative AI changed the way you think about privacy policy?<br>Answer options: Yes, No</i>"))
+                                                 ),
+                                                 column(width = 6,
+                                                        highchartOutput("gen_AI_chart")
                                                  ),
                                                  column( width= 4,
-                                                         actionButton("toggleText.gen_AI", "Show/Hide Interpretation"),
-                                                         uiOutput("interpretation.gen_AI"),
-                                                         br(),
                                                          actionButton("toggleText.gen_AI_sample", "Show/Hide Sample Details"),
-                                                         uiOutput("interpretation.gen_AI_sample"),
-                                                         
+                                                         uiOutput("interpretation.gen_AI_sample")
                                                  )
                                                ),
                                                
-                                      fluidRow(
-                                        column(width = 12,
-                                               h3("Impact of Generative AI on Privacy Policy Views"),
-                                               h4(HTML("Categorization of open-ended responses for experts who said their views have changed"))),
-                                        column(width = 7,
-                                               echarts4rOutput("ai.yes.chart")
-                                        ),
-                                        column( width= 4,
-                                                actionButton("toggleText.ai.yes", "Show/Hide Interpretation"),
-                                                uiOutput("interpretation.ai.yes")
-                                                
-                                        ))
-                                      
-                                    ),
-                                      tabPanel(title = "Wave 2 (August 2023)", ############# WAVE 2
-                                               # Question 10+ 11 combined
                                                fluidRow(
                                                  column(width = 12,
-                                                        h3(HTML("The Influence of Digital Privacy Regulations on Stakeholder Interests and Innovation")),),
-                                                 column(width = 3,
-                                                        actionButton("btn_law_favor_tech", "Impact on Business vs. User"),
-                                                        actionButton("btn_law_innovation", "Impact on Innovation"),
-                                                 ),
+                                                        h3(HTML("Expected shifts in digital privacy landscape due to generative AI")),
+                                                        h5(HTML("<i>Question: Has the rise of generative AI changed the way you think about privacy policy? Yes, how so?</i>"))),
                                                  column(width = 12,
-                                                        uiOutput("innovation.tech.combinedTitle")),
-                                                 column(width = 6,
-                                                        echarts4rOutput("innovation.tech.combined.chart")
+                                                        highchartOutput("ai_yes_chart")
                                                  ),
-                                                 column( width= 3,
-                                                         actionButton("toggleText.innovation.tech.combined", "Show/Hide Interpretation"),
-                                                         uiOutput("interpretation.innovation.tech.combined"),
-                                                         br(),
-                                                         actionButton("toggleText.innovation.tech.combined_sample", "Show/Hide Sample Details"),
-                                                         uiOutput("interpretation.innovation.tech.combined_sample")
+                                                 column( width= 4,
+                                                         actionButton("toggleText.ai.yes_sample", "Show/Hide Sample Details"),
+                                                         uiOutput("interpretation.ai.yes_sample")
+                                                 )
+                                               )
+                                               
+                                      ),
+                                      tabPanel(title = "Wave 2 (August 2023)", ############# WAVE 2
+                                               # Question 10
+                                               fluidRow(
+                                                 column(width = 12,
+                                                        h3(HTML("Balance of interest in digital privacy laws")),
+                                                        h4(HTML("Stakeholders perceive stronger support for businesses in USA")),
+                                                        h5(HTML("<i>Question: Do you think digital privacy laws and regulations in your region [of expertise]
+                                                                more strongly favor the rights and needs of businesses or of individual users?</i>"))
+                                                 ),
+                                                 column(width = 6,
+                                                        highchartOutput("plot_law_favor_tech")
+                                                 ),
+                                                 column( width= 4,
+                                                         actionButton("toggleText.tech_sample", "Show/Hide Sample Details"),
+                                                         uiOutput("interpretation.tech_sample")
                                                  )
                                                ),
-                                               # Question 16+ 17 combined
+                                               # Question 11
                                                fluidRow(
                                                  column(width = 12,
-                                                        h3(HTML("State Privacy Laws and Regulations")),),
-                                                 column(width = 3,
-                                                        actionButton("btn_current_state", "Current State"),
-                                                        actionButton("btn_future_state", "Future Outlook"),
+                                                        h3(HTML("Influence of laws on development of privacy-preserving practices and technologies")),
+                                                        h4(HTML("Stakeholders perceive European laws as more innovation friendly")),
+                                                        h5(HTML("<i>Question: Do you think digital privacy laws and regulations in your region [of expertise]
+                                                                encourage or discourage innovation and development of privacy-preserving practices and technologies in organizations?</i>"))
                                                  ),
-                                                 column(width = 12,
-                                                        uiOutput("StatelawCombinedTitle")),
                                                  column(width = 6,
-                                                        echarts4rOutput("StatelawCombined.chart")
+                                                        highchartOutput("plot_law_innovation")
                                                  ),
-                                                 column( width= 3,
-                                                         actionButton("toggleText.StatelawCombined", "Show/Hide Interpretation"),
-                                                         uiOutput("interpretation.StatelawCombined"),
-                                                         br(),
+                                                 column( width= 4,
+                                                         actionButton("toggleText.innovation_sample", "Show/Hide Sample Details"),
+                                                         uiOutput("interpretation.innovation_sample")
+                                                 )
+                                               ),
+                                               # Question 16+ 17
+                                               fluidRow(
+                                                 column(width=12,  
+                                                        h3(HTML("Current and future outlook of digital privacy laws")),
+                                                        h4(HTML("European stakeholders more optimistic than USA, but both anticipate improvements"))
+                                                 ),
+                                                 column(width = 6,
+                                                        highchartOutput("StatelawCurrent")
+                                                 ),
+                                                 column(width = 6,
+                                                        highchartOutput("StatelawFuture")
+                                                 ),
+                                                 column( width= 4,
                                                          actionButton("toggleText.StatelawCombined_sample", "Show/Hide Sample Details"),
                                                          uiOutput("interpretation.StatelawCombined_sample")
                                                  )
@@ -229,69 +187,44 @@ erstelleTab_front <- function() {
                                                # Question 26 + 27 combined
                                                fluidRow(
                                                  column(width = 12,
-                                                        h3(HTML("Organizations’ Digital Privacy Policies and Practices")),),
-                                                 column(width = 3,
-                                                        actionButton("btn_current", "Current State"),
-                                                        actionButton("btn_future", "Future Outlook"),
+                                                        h3(HTML("Current and future outlook of organizational digital privacy practices")),
+                                                        h4(HTML("European stakeholders more optimistic than USA, but both anticipate improvements"))
                                                  ),
-                                                 column(width = 12,
-                                                        uiOutput("StatePraCombinedTitle")),
                                                  column(width = 6,
-                                                        echarts4rOutput("StatePraCombined.chart")
+                                                        highchartOutput("StatePraCurrent")
                                                  ),
-                                                 column( width= 3,
-                                                         actionButton("toggleText.StatePraCombined", "Show/Hide Interpretation"),
-                                                         uiOutput("interpretation.StatePraCombined"),
-                                                         br(),
+                                                 column(width = 6,
+                                                        highchartOutput("StatePraFuture")
+                                                 ),
+                                                 column( width= 4,
                                                          actionButton("toggleText.StatePraCombined_sample", "Show/Hide Sample Details"),
                                                          uiOutput("interpretation.StatePraCombined_sample")
                                                  )
                                                ),
-                                               fluidRow( #model_input
+                                               # model_input
+                                               fluidRow( 
                                                  column(width = 12,
-                                                        h3("Privacy Law Essentials"),
-                                                        h4(HTML("How important is it for a national [consumer] privacy law 
-         <br/>to include the following requirements?")),),
-                                                 column(width = 3,
-                                                        radioButtons(
-                                                          width = 500,
-                                                          inputId = "model.input",
-                                                          label = "Please choose a category",
-                                                          choices = levels(model_final$model),
-                                                          selected = "Data access and deletion: 
-                                            Ability to view,\nedit and delete data in most situations"
-                                                        )),
+                                                        h3(HTML("Consumer privacy law requirements"))),
                                                  column(width = 6,
-                                                        echarts4rOutput("model.chart")
+                                                        highchartOutput("model_chart_Europe")
                                                  ),
-                                                 column( width= 3,
-                                                         actionButton("toggleText.model", "Show/Hide Interpretation"),
-                                                         uiOutput("interpretation.model"),
-                                                         br(),
+                                                 column(width = 6,
+                                                        highchartOutput("model_chart_USA")
+                                                 ),
+                                                 column( width= 4,
                                                          actionButton("toggleText.model_sample", "Show/Hide Sample Details"),
                                                          uiOutput("interpretation.model_sample")
                                                  )
                                                ),
                                                fluidRow(
                                                  column(width = 12,
-                                                        h3("Privacy Law Essentials in the US"),
-                                                        h4(HTML("How important is it for a national consumer privacy law to
-                                                                include the following enforcement mechanisms?")),),
-                                                 column(width = 3,
-                                                        radioButtons(
-                                                          width = 500,
-                                                          inputId = "model.input.q21",
-                                                          label = "Please choose a category",
-                                                          choices = levels(model_final_q21$model),
-                                                          selected = "A national standard, preempting state laws"
-                                                        )),
+                                                        h3(HTML("Consumer privacy law enforcement mechanisms (USA)")),
+                                                        h5(HTML("<i>Question: How important is it for a national consumer privacy law to
+                                                                include the following enforcement mechanisms?</i>"))),
                                                  column(width = 6,
-                                                        echarts4rOutput("model.chart.q21")
+                                                        highchartOutput("model_chart_q21")
                                                  ),
-                                                 column( width= 3,
-                                                         actionButton("toggleText.model.q21", "Show/Hide Interpretation"),
-                                                         uiOutput("interpretation.model.q21"),
-                                                         br(),
+                                                 column( width= 4,
                                                          actionButton("toggleText.model.q21_sample", "Show/Hide Sample Details"),
                                                          uiOutput("interpretation.model.q21_sample")
                                                  )
@@ -300,23 +233,12 @@ erstelleTab_front <- function() {
                                                # Q5 offline_activism
                                                fluidRow(
                                                  column(width = 12,
-                                                        h3("Offline Activism"),  
-                                                        h4(HTML("Have you ever engaged in any of the following activities?")),),
-                                                 column(width = 3,
-                                                        radioButtons(
-                                                          width = 500,
-                                                          inputId = "offline_activism.input",
-                                                          label = "Please choose a category",
-                                                          choices = levels(orgs_rating_priv.5$offline_activism),
-                                                          selected = "Signed a petition for a privacy-related topic"
-                                                        )),
-                                                 column(width = 6,
-                                                        echarts4rOutput("offline_activism.chart")
+                                                        h3(HTML("Offline privacy advocacy activities")), 
+                                                        h5(HTML("<i>Question: Have you ever engaged in any of the following activities?</i>"))),
+                                                 column(width = 12,
+                                                        highchartOutput("offline_activism_chart")
                                                  ),
-                                                 column( width= 3,
-                                                         actionButton("toggleText.offline_activism", "Show/Hide Interpretation"),
-                                                         uiOutput("interpretation.offline_activism"),
-                                                         br(),
+                                                 column( width= 4,
                                                          actionButton("toggleText.offline_activism_sample", "Show/Hide Sample Details"),
                                                          uiOutput("interpretation.offline_activism_sample")
                                                  )
@@ -324,46 +246,27 @@ erstelleTab_front <- function() {
                                                # Q6 online_activism
                                                fluidRow(
                                                  column(width = 12,
-                                                        h3("Online Activism"),  
-                                                        h4(HTML("Have you ever engaged in any of the following activities?")),),
-                                                 column(width = 3,
-                                                        radioButtons(
-                                                          width = 500,
-                                                          inputId = "online_activism.input",
-                                                          label = "Please choose a category",
-                                                          choices = levels(orgs_rating_priv.6$online_activism),
-                                                          selected = "Followed/friended individuals who share an interest in privacy topics"
-                                                        )),
-                                                 column(width = 6,
-                                                        echarts4rOutput("online_activism.chart")
+                                                        h3(HTML("Online privacy advocacy activities")),  
+                                                        h5(HTML("<i>Question: On any social media, have you ever engaged in any of the following activities?</i>"))),
+                                                 column(width = 12,
+                                                        highchartOutput("online_activism_chart")
                                                  ),
-                                                 column( width= 3,
-                                                         actionButton("toggleText.online_activism", "Show/Hide Interpretation"),
-                                                         uiOutput("interpretation.online_activism"),
-                                                         br(),
+                                                 column( width= 4,
                                                          actionButton("toggleText.online_activism_sample", "Show/Hide Sample Details"),
                                                          uiOutput("interpretation.online_activism_sample")
                                                  )
                                                ),
                                                fluidRow(
                                                  column(width = 12,
-                                                        h3("Privacy Priorities"),
-                                                        h4(HTML("How would you rank the importance of the following approaches to protecting people’s digital privacy?")),),
-                                                 column(width = 3,
-                                                        radioButtons(
-                                                          width = 500,
-                                                          inputId = "priorities_w2.input",
-                                                          label = "Please choose a category",
-                                                          choices = levels(priorities_w2$priorities),
-                                                          selected = "Giving individuals control over their data"
-                                                        )),
+                                                        h3(HTML("Ranking approaches to protecting digital privacy")),
+                                                        h5(HTML("<i>Question: How would you rank the importance of the following approaches to protecting people’s digital privacy?</i>"))),
                                                  column(width = 6,
-                                                        echarts4rOutput("priorities_w2.chart")
+                                                        highchartOutput("priorities_w2_Europe")
                                                  ),
-                                                 column(width= 3,
-                                                        actionButton("toggleText.priorities_w2", "Show/Hide Interpretation"),
-                                                        uiOutput("interpretation.priorities_w2"),
-                                                        br(),
+                                                 column(width = 6,
+                                                        highchartOutput("priorities_w2_USA")
+                                                 ),
+                                                 column(width= 4,
                                                         actionButton("toggleText.priorities_w2_sample", "Show/Hide Sample Details"),
                                                         uiOutput("interpretation.priorities_w2_sample"))
                                                ),
@@ -371,108 +274,90 @@ erstelleTab_front <- function() {
                                                # Question 18 + 19 combined
                                                fluidRow(
                                                  column(width = 12,
-                                                        h3(HTML("Policymaking"))),
-                                                 column(width = 3,
-                                                        actionButton("btn_policymaking_US", "US"),
-                                                        actionButton("btn_policymaking_EU", "EU"),
+                                                        h3(HTML("Policymaking approaches in digital privacy protection")),
+                                                        h4(HTML("Stakeholders advocate policymaking at highest levels of government possible")),
+                                                        h5(HTML("<i>Question: Do you think that digital privacy policy in your region should be made at the …</i>"))),
+                                                 column(width = 4,
+                                                        highchartOutput("policymaking_chart_Europe")
                                                  ),
-                                                 column(width = 12,
-                                                        uiOutput("policymakingCombinedTitle")),
-                                                 column(width = 6,
-                                                        echarts4rOutput("policymakingCombined.chart")
+                                                 column(width = 4,
+                                                        highchartOutput("policymaking_chart_USA")
                                                  ),
-                                                 column( width= 3,
-                                                         actionButton("toggleText.policymakingCombined", "Show/Hide Interpretation"),
-                                                         uiOutput("interpretation.policymakingCombined"),
-                                                         br(),
+                                                 column( width= 4,
                                                          actionButton("toggleText.policymakingCombined_sample", "Show/Hide Sample Details"),
                                                          uiOutput("interpretation.policymakingCombined_sample")
                                                  )
                                                )
-                                      ), 
-                                      tabPanel(title = "Wave 1 (October  2022)",
-                                               
+                                      ),
+                                      tabPanel(title = "Wave 1 (October 2022)",
                                                
                                                fluidRow(
                                                  column(width = 12,
-                                                        h3("Privacy Law Scope Review"),
-                                                        h4(HTML("How would you rate the specifications of the requirements in current digital privacy laws in your region*?")),
-                                                        h6(HTML("*References to specific regions or countries within survey questions are tailored to each respondent's 
-                               area of expertise[USA, EU, or an individual country].<p/> This approach allows for informed assessments 
-                               that are relevant to the respondent's own regulatory environment.")),
+                                                        h3(HTML("Stakeholder ratings of digital privacy law specifications")),
+                                                        h5(HTML("<i>Question: How would you rate the specifications of the requirements in current digital privacy laws in your region [of expertise]?<br>
+                                                              Answer options: Excellent, Good, Fair, Poor</i>")),
                                                  ),
-                                                 column(width = 7,
-                                                        echarts4rOutput("law_depth.chart")
+                                                 column(width = 6,
+                                                        highchartOutput("law_depth_plot")
                                                  ),
                                                  column( width= 4,
-                                                         actionButton("toggleText.Law_depth", "Show/Hide Interpretation"),
-                                                         uiOutput("interpretation.Law_depth"),
-                                                         br(),
                                                          actionButton("toggleText.Law_depth_sample", "Show/Hide Sample Details"),
                                                          uiOutput("interpretation.Law_depth_sample")
                                                  )
                                                ),
                                                fluidRow(
                                                  column(width = 12,
-                                                        h3("Privacy Priorities"),
-                                                        h4(HTML("How would you rank the importance of the following approaches to protecting people’s digital privacy?")),),
-                                                 column(width = 3,
-                                                        radioButtons(
-                                                          width = 500,
-                                                          inputId = "priorities_w1.input",
-                                                          label = "Please choose a category",
-                                                          choices = levels(priorities_w1$priorities),
-                                                          selected = "Giving individuals control over their data"
-                                                        )),
+                                                        h3(HTML("Ranking approaches to protecting digital privacy")),
+                                                        h5(HTML("<i>Question: How would you rank the importance of the following approaches to protecting people’s digital privacy?</i>"))),
                                                  column(width = 6,
-                                                        echarts4rOutput("priorities_w1.chart")
+                                                        highchartOutput("priorities_w1_Europe")
                                                  ),
-                                                 column( width= 3,
-                                                         actionButton("toggleText.priorities_w1", "Show/Hide Interpretation"),
-                                                         uiOutput("interpretation.priorities_w1"),
-                                                         br(),
+                                                 column(width = 6,
+                                                        highchartOutput("priorities_w1_USA")
+                                                 ),
+                                                 column( width= 4,
                                                          actionButton("toggleText.priorities_w1_sample", "Show/Hide Sample Details"),
                                                          uiOutput("interpretation.priorities_w1_sample"))
                                                ),
                                                
                                                fluidRow(
                                                  column(width = 12,
-                                                        h3(HTML("Digital Privacy Laws and Organizational Practices")),),
-                                                 column(width = 3,
-                                                        actionButton("btn_current_w1", "Current State"),
-                                                        actionButton("btn_future_w1", "Future Outlook"),
+                                                        h3(HTML("Current and future outlook of digital privacy laws")),
+                                                        h4(HTML("Europeans more satisfied with current laws, but Americans more optimistic for future"))
                                                  ),
-                                                 column(width = 12,
-                                                        uiOutput("StateCombinedW1Title")),
                                                  column(width = 6,
-                                                        echarts4rOutput("StateCombinedW1.chart")
+                                                        highchartOutput("StateCurrentW1")
                                                  ),
-                                                 column( width= 3,
-                                                         actionButton("toggleText.StateCombinedW1", "Show/Hide Interpretation"),
-                                                         uiOutput("interpretation.StateCombinedW1"),
-                                                         br(),
+                                                 column(width = 6,
+                                                        highchartOutput("StateFutureW1")
+                                                 ),
+                                                 column( width= 4,
                                                          actionButton("toggleText.StateCombinedW1_sample", "Show/Hide Sample Details"),
                                                          uiOutput("interpretation.StateCombinedW1_sample")
                                                  )
                                                )
                                       ),
+                                      
                                       tabPanel(title = "Data Download",
-                                               br(),
-                                               br(),
-                                               width= 4,
-                                               h4(HTML("We're currently transferring the anonymized raw data from our study to 
+                                               column(width = 1,
+                                                      br()
+                                               ),
+                                               column(width = 10,
+                                                      h4(HTML("We're currently transferring the anonymized raw data from our study to 
                                 GESIS (Leibniz Institute for the Social Sciences), 
-                                a German institute that handles social science data. <br/>
-                                The link to the archived data will be shared here once that's done.<br/>
+                                a German institute that handles social science data. The link to the archived data will be shared here once that's done.<br/>
                                 <p/> <br/>
                                 Need the data now? You can reach out to our research team directly for access."))
-                                               
-                                      ), #end of tabpanel two
+                                               ),
+                                               column(width = 1,
+                                                      br()
+                                               )
+                                      )#end of tabpanel two
                                       
                                     )  # End of tabsetPanel
                                     
                              ) # End of column
-                    ), # End of fluidRow
+                    ) # End of fluidRow
                     
           ) # End of fluidPage
   ) # End of tabItem

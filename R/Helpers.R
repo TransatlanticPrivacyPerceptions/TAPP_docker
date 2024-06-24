@@ -3,7 +3,7 @@
 library(pacman)
 
 pacman::p_load("haven", "readr", "dplyr", "tidyr", "hrbrthemes", "echarts4r", "shinydashboard", "shinydashboardPlus", "stringr",
-               "shinyjs", "openxlsx", "DT", "htmlwidgets", "readxl")
+               "shinyjs", "openxlsx", "DT", "htmlwidgets", "readxl", "ggplot2", "highcharter")
 
 
 my_rowSums <- function(x) {
@@ -25,3 +25,4 @@ my_rowSums <- function(x) {
 #DCC159: This is a muted gold color. 
 
 #FFD469: This is a light, warm yellow. 
+

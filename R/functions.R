@@ -2,97 +2,98 @@
 
 
 
-textContent.time.series <- "Overview of Expert Demographics:      <br/>
+textContent.time.series <- "<strong>Overview of Expert Demographics:</strong>      <br/>
 <br/>
-<strong> WAVE 2 August 2023 </strong> <br/>
-Total privacy experts surveyed: 74      <br/>
-Data collection period: August 2023      <br/>
-<br/>
-<strong> Practitioner Expertise:</strong> <br/>
-European Privacy: 14 experts      <br/>
-USA Privacy: 11 experts      <br/>
-<br/>
-<strong> Academic Expertise:</strong> <br/>
-European Privacy: 27 experts      <br/>
-USA Privacy: 22 experts      <br/>
-<br/>
-<strong> Years of Experience in Digital Privacy:</strong> <br/>
-More than 10 years: 38 experts      <br/>
-6-9 years: 14 experts      <br/>
-<br/>
-<strong> WAVE 1 October 2022  </strong> <br/>
-Total privacy experts surveyed: 64      <br/>
-Data collection period: October 2022      <br/>
-<br/>
-<strong> Practitioner Expertise: </strong> <br/>
-European Privacy: 10 experts      <br/>
-USA Privacy: 19 experts      <br/>
-<br/>
-<strong> Academic Expertise: </strong> <br/>
-European Privacy: 12 experts      <br/>
-USA Privacy: 23 experts      <br/>
-
-Practitioners include experts from: Private sector: Tech industry, 
-Private sector: non-Tech industry, Government, Journalism, Law, Non-profit / NGO / Think tank  <br/>
+<table class='table table-bordered'>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Europe</th>
+                <th>USA</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>October 2022</td>
+                <td>Academics: 12<br>Practitioners<strong>*</strong>: 10</td>
+                <td>Academics: 23<br>Practitioners<strong>*</strong>: 19</td>
+              </tr>
+              <tr>
+                <td>August 2023</td>
+                <td>Academics: 27<br>Practitioners<strong>*</strong>: 14<br>Average Years of Experience in Digital Privacy: > 10 years</td>
+                <td>Academics: 22<br>Practitioners<strong>*</strong>: 11<br>Average Years of Experience in Digital Privacy: > 10 years</td>
+              </tr>
+            </tbody>
+          </table>
+<strong>*Practitioners include experts from:</strong> Tech industry, Non-Tech industry, Government, Journalism, Law, Non-profit / NGO / Think tank  <br/>
               "
 
-textContent.wave1 <- "Overview of Expert Demographics:      <br/>
+
+textContent.wave1 <- "<strong>Overview of Expert Demographics:</strong>      <br/>
 <br/>
-<strong> WAVE 1 October 2022  </strong> <br/>
-Total privacy experts surveyed: 64      <br/>
-Data collection period: October 2022      <br/>
-<br/>
-<strong> Practitioner Expertise: </strong> <br/>
-European Privacy: 10 experts      <br/>
-USA Privacy: 19 experts      <br/>
-Practitioners include experts from: Private sector: Tech industry, 
-Private sector: non-Tech industry, Government, Journalism, Law, Non-profit / NGO / Think tank  <br/>
-<br/>
-<strong> Academic Expertise: </strong> <br/>
-European Privacy: 12 experts      <br/>
-USA Privacy: 23 experts      <br/> "
+<table class='table table-bordered'>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Europe</th>
+                <th>USA</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>October 2022</td>
+                <td>Academics: 12<br>Practitioners<strong>*</strong>: 10</td>
+                <td>Academics: 23<br>Practitioners<strong>*</strong>: 19</td>
+              </tr>
+            </tbody>
+          </table>
+<strong>*Practitioners include experts from:</strong> Tech industry, Non-Tech industry, Government, Journalism, Law, Non-profit / NGO / Think tank  <br/>
+              "
 
 
-textContent.wave2 <- "Overview of Expert Demographics:      <br/>
+
+textContent.wave2 <- "<strong>Overview of Expert Demographics:</strong>      <br/>
 <br/>
-<strong> WAVE 2 August 2023 </strong> <br/>
-Total privacy experts surveyed: 74      <br/>
-Data collection period: August 2023      <br/>
-<br/>
-<strong> Practitioner Expertise:</strong> <br/>
-European Privacy: 14 experts      <br/>
-USA Privacy: 11 experts      <br/>
-Practitioners include experts from: Private sector: Tech industry, 
-Private sector: non-Tech industry, Government, Journalism, Law, Non-profit / NGO / Think tank  <br/>
-<br/>
-<strong> Academic Expertise:</strong> <br/>
-European Privacy: 27 experts      <br/>
-USA Privacy: 22 experts      <br/>
-<br/>
-<strong> Years of Experience in Digital Privacy:</strong> <br/>
-More than 10 years: 38 experts      <br/>
-6-9 years: 14 experts      <br/>
-<br/>"
+<table class='table table-bordered'>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Europe</th>
+                <th>USA</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>August 2023</td>
+                <td>Academics: 27<br>Practitioners<strong>*</strong>: 14<br>Average Years of Experience in Digital Privacy:  > 10 years</td>
+                <td>Academics: 22<br>Practitioners<strong>*</strong>: 11<br>Average Years of Experience in Digital Privacy:  > 10 years</td>
+              </tr>
+            </tbody>
+          </table>
+<strong>*Practitioners include experts from:</strong> Tech industry, Non-Tech industry, Government, Journalism, Law, Non-profit / NGO / Think tank  <br/>
+              "
 
 
-textContent.wave3<-"Overview of Expert Demographics:      <br/>
-      <br/>
-Total privacy experts surveyed: 79      <br/>
-Data collection period: December 2023      <br/>
-      <br/>
-<strong> Practitioner Expertise::</strong>       <br/>
-European Privacy: 21 experts      <br/>
-USA Privacy: 11 experts      <br/>
-Practitioners include experts from: Private sector: Tech industry, 
-Private sector: non-Tech industry, Government, Journalism, Law, Non-profit / NGO / Think tank  <br/>
-      <br/>
-<strong> Academic Expertise:</strong> <br/>
-European Privacy: 23 experts      <br/>
-USA Privacy: 24 experts      <br/>
-      <br/>
-<strong> Years of Experience in Digital Privacy:</strong> <br/>
-More than 10 years: 21 experts      <br/>
-6-9 years: 7 experts      <br/>"
+textContent.wave3 <- "<strong>Overview of Expert Demographics:</strong>      <br/>
+<br/>
+<table class='table table-bordered'>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Europe</th>
+                <th>USA</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>December 2023</td>
+                <td>Academics: 23<br>Practitioners<strong>*</strong>: 21<br>Average Years of Experience in Digital Privacy:  > 10 years</td>
+                <td>Academics: 24<br>Practitioners<strong>*</strong>: 11<br>Average Years of Experience in Digital Privacy:  > 10 years</td>
+              </tr>
+            </tbody>
+          </table>
+<strong>*Practitioners include experts from:</strong> Tech industry, Non-Tech industry, Government, Journalism, Law, Non-profit / NGO / Think tank  <br/>
+              "
 
 resize_js <- "
   function(el) {

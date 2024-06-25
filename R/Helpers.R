@@ -2,8 +2,8 @@
 # load packages 
 library(pacman)
 
-pacman::p_load("haven", "readr", "dplyr", "tidyr", "hrbrthemes", "echarts4r", "shinydashboard", "shinydashboardPlus", "stringr",
-               "shinyjs", "openxlsx", "DT", "htmlwidgets", "readxl", "ggplot2", "highcharter")
+pacman::p_load("haven", "readr", "dplyr", "tidyr", "hrbrthemes", "shinydashboard", "shinydashboardPlus", "stringr",
+               "shinyjs", "openxlsx", "DT", "htmlwidgets", "readxl", "highcharter")
 
 
 my_rowSums <- function(x) {

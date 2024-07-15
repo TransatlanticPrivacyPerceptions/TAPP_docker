@@ -84,6 +84,24 @@ server <- function(input, output, session) {
     })
   }
   
+  createTextDisplay.wave4 <- function(id, textContent.wave4) {
+    uiOutput(outputId = paste0("interpretation.", id))
+  }
+  
+  serverTextDisplay.wave4 <- function(id, textContent.wave4) {
+    textVisible <- reactiveVal(FALSE)
+    
+    observeEvent(input[[paste0("toggleText.", id)]], {
+      textVisible(!textVisible())
+    })
+    
+    output[[paste0("interpretation.", id)]] <- renderUI({
+      if (textVisible()) {
+        h6(HTML(textContent.wave4))
+      }
+    })
+  }
+  
   
   createTextDisplay.wave1 <- function(id, textContent.wave1) {
     uiOutput(outputId = paste0("interpretation.", id))
@@ -1197,7 +1215,7 @@ server <- function(input, output, session) {
                                       format = '{point.y:.0f}%'),
                     legendIndex = 2) %>%
       hc_add_series(name = "Important to include", data = model_final_Europe$Value[model_final_Europe$Important == "Important to include"], color = '#E69037',
-                    dataLabels = list(color = "white",
+                    dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
                     legendIndex = 1) %>%
@@ -1256,7 +1274,7 @@ server <- function(input, output, session) {
                                       format = '{point.y:.0f}%'),
                     legendIndex = 2) %>%
       hc_add_series(name = "Important to include", data = model_final_USA$Value[model_final_USA$Important == "Important to include"], color = '#E69037',
-                    dataLabels = list(color = "white",
+                    dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
                     legendIndex = 1) %>%
@@ -1331,7 +1349,7 @@ server <- function(input, output, session) {
                                       format = '{point.y:.0f}%'),
                     legendIndex = 2) %>%
       hc_add_series(name = "Important to include", data = model_final_q21$Value[model_final_q21$Important == "Important to include"], color = '#E69037',
-                    dataLabels = list(color = "white",
+                    dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
                     legendIndex = 1) %>%
@@ -2040,6 +2058,517 @@ server <- function(input, output, session) {
   
   serverTextDisplay.wave1("StateCombinedW1_sample", textContent.wave1)
   
+  
+  ###########################################################################################################################################
+  # 1st Plot of Wave 4: Use of AI tools and systems for work
+  ###########################################################################################################################################
+  # Do you use AI tools or systems in your work?
+  # ●	Yes
+  # ●	No
+  # ●	Don't know
+  
+  output$ai_work_plot <- renderHighchart({
+    highchart() %>%
+      hc_chart(type = "column",
+               height = 400,
+               marginTop = 120) %>%
+      hc_xAxis(categories = unique(ai_work$category),
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "Yes", data = ai_work$Value[ai_work$Area == "Yes"], color = '#244775',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_plotOptions(column = list(borderWidth = 0,
+                                   pointWidth = 55,
+                                   dataLabels = list(enabled = TRUE,
+                                                     align = "center",
+                                                     verticalAlign = "bottom",
+                                                     inside = FALSE,
+                                                     borderWidth = 0,
+                                                     y = -1,  # Adjust the y position to move the label above the bar
+                                                     format = '{point.y:.0f}%',
+                                                     style = list(textShadow = FALSE,
+                                                                  fontSize = "16px", fontFamily = "Assistant",
+                                                                  fontWeight = "normal",
+                                                                  textOutline = "none")
+                                   ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "center", layout = "vertical", verticalAlign = "top",
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+    
+  })
+  
+  serverTextDisplay.wave4("ai_work_sample", textContent.wave4)
+  
+  
+  ###########################################################################################################################################
+  # 2nd Plot of Wave 4: Privacy concerns for the use of AI tools or systems in their work
+  ###########################################################################################################################################
+  # How much do privacy concerns affect your use of AI tools or systems in your work? 
+  # ●	Not at all
+  # ●	Somewhat
+  # ●	A great deal
+  
+  output$ai_concern_plot <- renderHighchart({
+    highchart() %>%
+      hc_chart(type = "column",
+               height = 400,
+               marginTop = 120) %>%
+      hc_xAxis(categories = unique(ai_concern$category),
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "A great deal", data = ai_concern$Value[ai_concern$Area == "A great deal"], color = '#E69037',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_add_series(name = "Somewhat", data = ai_concern$Value[ai_concern$Area == "Somewhat"], color = '#F6BB51',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 1) %>%
+      hc_add_series(name = "Not at all", data = ai_concern$Value[ai_concern$Area == "Not at all"], color = '#FCDC97',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 2) %>%
+      hc_plotOptions(column = list(stacking = "normal",
+                                   borderWidth = 0,
+                                   pointWidth = 55,
+                                   groupPadding = 0.1, # reduce the space between groups of columns
+                                   pointPadding = 0.1, # reduce the space between individual columns within the same group
+                                   dataLabels = list(enabled = TRUE,
+                                                     borderWidth = 0,
+                                                     format = '{point.percentage:.0f}%',
+                                                     style = list(textShadow = FALSE,
+                                                                  fontSize = "16px", fontFamily = "Assistant",
+                                                                  fontWeight = "normal",
+                                                                  textOutline = "none")
+                                   ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "center", layout = "vertical", verticalAlign = "top",
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+    
+  })
+  
+  serverTextDisplay.wave4("ai_concern_sample", textContent.wave4)
+  
+  
+  ###########################################################################################################################################
+  # 3rd Plot of Wave 4: Organizational adoption of AI frameworks and guidelines
+  ###########################################################################################################################################
+  # Does your organization have a framework or guidelines in place for using AI in the workplace?
+  # ●	Yes
+  # ●	No
+  # ●	Don't know
+  
+  output$ai_org_framework_plot <- renderHighchart({
+    highchart() %>%
+      hc_chart(type = "column",
+               height = 400,
+               marginTop = 120) %>%
+      hc_xAxis(categories = unique(ai_org_framework$category),
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "Yes", data = ai_org_framework$Value[ai_org_framework$Area == "Yes"], color = '#244775',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_plotOptions(column = list(borderWidth = 0,
+                                   pointWidth = 55,
+                                   dataLabels = list(enabled = TRUE,
+                                                     align = "center",
+                                                     verticalAlign = "bottom",
+                                                     inside = FALSE,
+                                                     borderWidth = 0,
+                                                     y = -1,  # Adjust the y position to move the label above the bar
+                                                     format = '{point.y:.0f}%',
+                                                     style = list(textShadow = FALSE,
+                                                                  fontSize = "16px", fontFamily = "Assistant",
+                                                                  fontWeight = "normal",
+                                                                  textOutline = "none")
+                                   ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "center", layout = "vertical", verticalAlign = "top",
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+    
+  })
+  
+  serverTextDisplay.wave4("ai_org_framework_sample", textContent.wave4)
+  
+  ###########################################################################################################################################
+  # 4th Plot of Wave 4: AI frameworks and guidelines used by organizations
+  ###########################################################################################################################################
+  # Which frameworks and guidelines does your organization have for AI use? (e.g., OECD, IEEE, internal proprietary) 
+  
+  # 
+  # output$ai_framework_use_plot <- renderHighchart({
+  #   
+  #   highchart() %>%
+  #     hc_chart(type = "packedbubble") %>%
+  #     hc_tooltip(
+  #       pointFormat = "{point.value}"
+  #     ) %>%
+  #     hc_plotOptions(
+  #       packedbubble = list(
+  #         minSize = "40%",
+  #         maxSize = "1200%",
+  #         zMin = 0,
+  #         zMax = 1000)
+  #     ) %>%
+  #     hc_add_series(name = "internal", data = ai_framework_use$count[ai_framework_use$framework == "internal"], color = '#244775',
+  #                   dataLabels = list(color = "black",
+  #                                     style = list(fontWeight = "normal"),
+  #                                     format = '{point.y:.0f}%'),
+  #                   legendIndex = 0) %>%
+  #     hc_add_series(name = "OECD", data = ai_framework_use$count[ai_framework_use$framework == "OECD"], color = '#7F956B',
+  #                   dataLabels = list(color = "black",
+  #                                     style = list(fontWeight = "normal"),
+  #                                     format = '{point.y:.0f}%'),
+  #                   legendIndex = 1) %>%
+  #     hc_add_series(name = "IEEE", data = ai_framework_use$count[ai_framework_use$framework == "IEEE"], color = '#FCDC97',
+  #                   dataLabels = list(color = "black",
+  #                                     style = list(fontWeight = "normal"),
+  #                                     format = '{point.y:.0f}%'),
+  #                   legendIndex = 2) %>%
+  #     hc_add_series(name = "NIST", data = ai_framework_use$count[ai_framework_use$framework == "NIST"], color = '#88B04B',
+  #                   dataLabels = list(color = "black",
+  #                                     style = list(fontWeight = "normal"),
+  #                                     format = '{point.y:.0f}%'),
+  #                   legendIndex = 3) %>%
+  #     hc_add_series(name = "ISO", data = ai_framework_use$count[ai_framework_use$framework == "ISO"], color = '#D65076',
+  #                   dataLabels = list(color = "black",
+  #                                     style = list(fontWeight = "normal"),
+  #                                     format = '{point.y:.0f}%'),
+  #                   legendIndex = 4) %>%
+  #     hc_add_series(name = "DFG", data = ai_framework_use$count[ai_framework_use$framework == "DFG"], color = '#6B5B95',
+  #                   dataLabels = list(color = "black",
+  #                                     style = list(fontWeight = "normal"),
+  #                                     format = '{point.y:.0f}%'),
+  #                   legendIndex = 5) %>%
+  #     hc_add_series(name = "Microsoft Responsible AI", data = ai_framework_use$count[ai_framework_use$framework == "Microsoft Responsible AI"], color = '#92A8D1',
+  #                   dataLabels = list(color = "black",
+  #                                     style = list(fontWeight = "normal"),
+  #                                     format = '{point.y:.0f}%'),
+  #                   legendIndex = 6) %>%
+  #     hc_add_series(name = "other", data = ai_framework_use$count[ai_framework_use$framework == "other"], color = '#FFB447',
+  #                   dataLabels = list(color = "black",
+  #                                     style = list(fontWeight = "normal"),
+  #                                     format = '{point.y:.0f}%'),
+  #                   legendIndex = 7) %>%
+  #     hc_legend(align = "left", layout = "vertical", verticalAlign = "top",
+  #               symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+  #               itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+  #                                fontStyle = "normal", color= "black"))
+  # })
+  # 
+  # serverTextDisplay.wave4("ai_framework_use_sample", textContent.wave4)
+  # 
+  ###########################################################################################################################################
+  # 5th Plot of Wave 4: Intentions for organizational adoption of AI frameworks and guidelines
+  ###########################################################################################################################################
+  # Does your organization plan to implement a framework or guidelines for future AI use?
+  # ●	Yes
+  # ●	No
+  # ●	Don't know
+  
+  output$ai_framework_future_plot <- renderHighchart({
+    highchart() %>%
+      hc_chart(type = "column",
+               height = 400,
+               marginTop = 120) %>%
+      hc_xAxis(categories = unique(ai_framework_future$category),
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "Yes", data = ai_framework_future$Value[ai_framework_future$Area == "Yes"], color = '#244775',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_plotOptions(column = list(borderWidth = 0,
+                                   pointWidth = 55,
+                                   dataLabels = list(enabled = TRUE,
+                                                     align = "center",
+                                                     verticalAlign = "bottom",
+                                                     inside = FALSE,
+                                                     borderWidth = 0,
+                                                     y = -1,  # Adjust the y position to move the label above the bar
+                                                     format = '{point.y:.0f}%',
+                                                     style = list(textShadow = FALSE,
+                                                                  fontSize = "16px", fontFamily = "Assistant",
+                                                                  fontWeight = "normal",
+                                                                  textOutline = "none")
+                                   ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "center", layout = "vertical", verticalAlign = "top",
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+    
+  })
+  
+  serverTextDisplay.wave4("ai_framework_future_sample", textContent.wave4)
+  
+  ###########################################################################################################################################
+  # 6th Plot of Wave 4: Stakeholder involvement in organizational AI framework and guidelines development
+  ###########################################################################################################################################
+  # Are you/ will you be involved in drafting the framework or guidelines? 
+  # ●	Yes
+  # ●	No
+  # ●	Don't know
+  
+  output$ai_framework_draft_plot <- renderHighchart({
+    highchart() %>%
+      hc_chart(type = "column",
+               height = 400,
+               marginTop = 120) %>%
+      hc_xAxis(categories = unique(ai_framework_draft$category),
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "Yes", data = ai_framework_draft$Value[ai_framework_draft$Area == "Yes"], color = '#244775',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_plotOptions(column = list(borderWidth = 0,
+                                   pointWidth = 55,
+                                   dataLabels = list(enabled = TRUE,
+                                                     align = "center",
+                                                     verticalAlign = "bottom",
+                                                     inside = FALSE,
+                                                     borderWidth = 0,
+                                                     y = -1,  # Adjust the y position to move the label above the bar
+                                                     format = '{point.y:.0f}%',
+                                                     style = list(textShadow = FALSE,
+                                                                  fontSize = "16px", fontFamily = "Assistant",
+                                                                  fontWeight = "normal",
+                                                                  textOutline = "none")
+                                   ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "center", layout = "vertical", verticalAlign = "top",
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+    
+  })
+  
+  serverTextDisplay.wave4("ai_framework_draft_sample", textContent.wave4)
+  
+  ###########################################################################################################################################
+  # 7th Plot of Wave 4: Organizational compliance with AI framework and guidelines
+  ###########################################################################################################################################
+  # Question: How does/ will your organization ensure that everyone complies with the framework or guidelines? 
+  
+  output$ai_compliance_chart <- renderHighchart({
+    
+    highchart() %>%
+      hc_chart(type = "bar",
+               height = 400,
+               marginTop = 0) %>%
+      hc_xAxis(categories = unique(ai_compliance$category),
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "Europe <br> (n = 34)", data = ai_compliance$share[ai_compliance$region == "Europe <br> (n = 34)"],
+                    color = '#4B77C5',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_add_series(name = "USA <br>(n = 27)", data = ai_compliance$share[ai_compliance$region == "USA <br>(n = 27)"],
+                    color = '#7F956B',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 1) %>%
+      hc_plotOptions(bar = list(borderRadius = "0%",
+                                dataLabels = list(enabled = TRUE,
+                                                  borderWidth = 0,
+                                                  format = '{point.percentage:.0f}%',
+                                                  style = list(textShadow = FALSE,
+                                                               fontSize = "16px", fontFamily = "Assistant",
+                                                               fontWeight = "normal",
+                                                               textOutline = "none")),
+                                groupPadding = 0.1)) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(title = list(text = 'Region<br><i><span style="font-size: 9px; color: #666; font-weight: normal">(Click to hide)</i></span>'),
+                align = "left", layout = "vertical", verticalAlign = "middle",
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2, useHTML = TRUE,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+    
+  })
+  
+  serverTextDisplay.wave4("ai_compliance_sample", textContent.wave4)
+  
+  ###########################################################################################################################################
+  # 8th Plot of Wave 4:  Confidence in managing AI privacy challenges
+  ###########################################################################################################################################
+  # Do you feel confident that you/ your organization will be able to address privacy challenges that may arise when using AI tools or systems in your work?
+  # ●	Yes
+  # ●	No
+  # ●	Don't know
+  
+  output$ai_challenge_plot <- renderHighchart({
+    highchart() %>%
+      hc_chart(type = "column",
+               height = 400,
+               marginTop = 120) %>%
+      hc_xAxis(categories = unique(ai_challenge$category),
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "Yes", data = ai_challenge$Value[ai_challenge$Area == "Yes"], color = '#244775',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_plotOptions(column = list(borderWidth = 0,
+                                   pointWidth = 55,
+                                   dataLabels = list(enabled = TRUE,
+                                                     align = "center",
+                                                     verticalAlign = "bottom",
+                                                     inside = FALSE,
+                                                     borderWidth = 0,
+                                                     y = -1,  # Adjust the y position to move the label above the bar
+                                                     format = '{point.y:.0f}%',
+                                                     style = list(textShadow = FALSE,
+                                                                  fontSize = "16px", fontFamily = "Assistant",
+                                                                  fontWeight = "normal",
+                                                                  textOutline = "none")
+                                   ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "center", layout = "vertical", verticalAlign = "top",
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+    
+  })
+  
+  serverTextDisplay.wave4("ai_challenge_sample", textContent.wave4)
+  
+  ###########################################################################################################################################
+  # 9th Plot of Wave 4: Intentions for managing AI privacy challenges
+  ###########################################################################################################################################
+  # Question: How do you/ does your organization plan to address such challenges? 
+  
+  # output$ai_challenge_plan_chart <- renderHighchart({
+  #   
+  #   highchart() %>%
+  #     hc_chart(type = "bar",
+  #              height = 400,
+  #              marginTop = 0,
+  #              marginLeft = 600) %>%
+  #     hc_xAxis(categories = unique(ai_challenge_plan$answers),
+  #              labels = list(style = list(fontSize = "14px", color = "black")),
+  #              lineColor = "lightgrey") %>%
+  #     hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+  #     hc_add_series(name = "n = 14", data = ai_challenge_plan$count,
+  #                   color = '#4B77C5',
+  #                   dataLabels = list(color = "black",
+  #                                     style = list(fontWeight = "normal"),
+  #                                     format = '{point.y:.0f}'),
+  #                   legendIndex = 0,
+  #                   showInLegend = FALSE) %>%
+  #     hc_plotOptions(bar = list(borderRadius = 0, # set to 0 instead of "0%"
+  #                               dataLabels = list(enabled = TRUE,
+  #                                                 borderWidth = 0,
+  #                                                 format = '{point.y:.0f}',
+  #                                                 style = list(textShadow = FALSE, # ensure this is correct
+  #                                                              fontSize = "16px", fontFamily = "Assistant",
+  #                                                              fontWeight = "normal",
+  #                                                              textOutline = "none")),
+  #                               groupPadding = 0.1)) %>%
+  #     hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+  # })
+  
+  # serverTextDisplay.wave4("ai_challenge_plan_sample", textContent.wave4)
+  
+  ###########################################################################################################################################
+  # 11th Plot of Wave 4:  Confidence in managing AI privacy challenges
+  ###########################################################################################################################################
+  # Are you familiar with “Responsible AI” principles?
+  # ●	Not at all
+  # ●	Somewhat
+  # ●	A great deal
+  
+  output$ai_responsible_plot <- renderHighchart({
+    highchart() %>%
+      hc_chart(type = "column",
+               height = 400,
+               marginTop = 120) %>%
+      hc_xAxis(categories = unique(ai_responsible$category),
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "A great deal", data = ai_responsible$Value[ai_responsible$Area == "A great deal"], color = '#E69037',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_add_series(name = "Somewhat", data = ai_responsible$Value[ai_responsible$Area == "Somewhat"], color = '#F6BB51',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 1) %>%
+      hc_add_series(name = "Not at all", data = ai_responsible$Value[ai_responsible$Area == "Not at all"], color = '#FCDC97',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 2) %>%
+      hc_plotOptions(column = list(stacking = "normal",
+                                   borderWidth = 0,
+                                   pointWidth = 55,
+                                   groupPadding = 0.1, # reduce the space between groups of columns
+                                   pointPadding = 0.1, # reduce the space between individual columns within the same group
+                                   dataLabels = list(enabled = TRUE,
+                                                     borderWidth = 0,
+                                                     format = '{point.percentage:.0f}%',
+                                                     style = list(textShadow = FALSE,
+                                                                  fontSize = "16px", fontFamily = "Assistant",
+                                                                  fontWeight = "normal",
+                                                                  textOutline = "none")
+                                   ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "center", layout = "vertical", verticalAlign = "top",
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+    
+  })
+  
+  serverTextDisplay.wave4("ai_responsible_sample", textContent.wave4)
+  
   ################################################################################################   
   
   output$tabelle <- renderDT({
@@ -2059,6 +2588,7 @@ server <- function(input, output, session) {
     )
   })
 }
+
 
 
 # Run Shiny App

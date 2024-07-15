@@ -95,6 +95,27 @@ textContent.wave3 <- "<strong>Overview of Expert Demographics:</strong>      <br
 <strong>*Practitioners include experts from:</strong> Tech industry, Non-Tech industry, Government, Journalism, Law, Non-profit / NGO / Think tank  <br/>
               "
 
+textContent.wave4 <- "<strong>Overview of Expert Demographics:</strong>      <br/>
+<br/>
+<table class='table table-bordered'>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Europe</th>
+                <th>USA</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>May 2024</td>
+                <td>Academics: 18<br>Practitioners<strong>*</strong>: 30</td>
+                <td>Academics: 15<br>Practitioners<strong>*</strong>: 14</td>
+              </tr>
+            </tbody>
+          </table>
+<strong>*Practitioners include experts from:</strong> Tech industry, Non-Tech industry, Government, Journalism, Law, Non-profit / NGO / Think tank  <br/>
+              "
+
 resize_js <- "
   function(el) {
     var chartDom = el;

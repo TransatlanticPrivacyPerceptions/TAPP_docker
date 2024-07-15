@@ -104,6 +104,90 @@ erstelleTab_front <- function() {
                                                )
                                                
                                       ),
+                                      tabPanel(title = "Wave 4 (May 2024)", ##### WAVE 4
+                                               fluidRow(
+                                                 column(width = 12,
+                                                        h3(HTML("Use of AI tools and systems for work")),
+                                                        h5(HTML("<i>Question: Do you use AI tools or systems in your work?<br>Answer options: Yes, No, Don't know</i>"))),
+                                                 column(width = 6,
+                                                        highchartOutput("ai_work_plot")),
+                                                 column(width = 4, 
+                                                        actionButton("toggleText.ai_work_sample", "Show/Hide Sample Details"),
+                                                        uiOutput("interpretation.ai_work_sample"))
+                                               ),
+                                               fluidRow(
+                                                 column(width = 12,
+                                                        h3(HTML("Privacy concerns for the use of AI tools or systems in their work")),
+                                                        h5(HTML("<i>Question: How much do privacy concerns affect your use of AI tools or systems in your work?<br>Answer options: A great deal, Somewhat, Not at all</i>"))),
+                                                 column(width = 6,
+                                                        highchartOutput("ai_concern_plot")),
+                                                 column(width = 4, 
+                                                        actionButton("toggleText.ai_concern_sample", "Show/Hide Sample Details"),
+                                                        uiOutput("interpretation.ai_concern_sample"))
+                                               ),
+                                               fluidRow(
+                                                 column(width = 12,
+                                                        h3(HTML("Organizational adoption of AI frameworks and guidelines")),
+                                                        h5(HTML("<i>Question: Does your organization have a framework or guidelines in place for using AI in the workplace?<br>Answer options: Yes, No, Don't know</i>"))),
+                                                 column(width = 6,
+                                                        highchartOutput("ai_org_framework_plot")),
+                                                 column(width = 4, 
+                                                        actionButton("toggleText.ai_org_framework_sample", "Show/Hide Sample Details"),
+                                                        uiOutput("interpretation.ai_org_framework_sample"))
+                                               ),
+                                               
+                                               fluidRow(
+                                                 column(width = 12,
+                                                        h3(HTML("Intentions for organizational adoption of AI frameworks and guidelines")),
+                                                        h5(HTML("<i>Question: Does your organization plan to implement a framework or guidelines for future AI use?<br>Answer options: Yes, No, Don't know</i>"))),
+                                                 column(width = 6,
+                                                        highchartOutput("ai_framework_future_plot")),
+                                                 column(width = 4, 
+                                                        actionButton("toggleText.ai_framework_future_sample", "Show/Hide Sample Details"),
+                                                        uiOutput("interpretation.ai_framework_future_sample"))
+                                               ),
+                                               fluidRow(
+                                                 column(width = 12,
+                                                        h3(HTML("Stakeholder involvement in organizational AI framework and guidelines development")),
+                                                        h5(HTML("<i>Question: Are you/ will you be involved in drafting the framework or guidelines?</i>"))),
+                                                 column(width = 6,
+                                                        highchartOutput("ai_framework_draft_plot")),
+                                                 column(width = 4, 
+                                                        actionButton("toggleText.ai_framework_draft_sample", "Show/Hide Sample Details"),
+                                                        uiOutput("interpretation.ai_framework_draft_sample"))
+                                               ),
+                                               fluidRow(
+                                                 column(width = 12,
+                                                        h3(HTML("Organizational compliance with AI framework and guidelines")),
+                                                        h5(HTML("<i>Question: How does /will your organization ensure that everyone complies with the framework or guidelines?<br>Answer options: Yes, No, Don't know</i>"))),
+                                                 column(width = 12,
+                                                        highchartOutput("ai_compliance_chart")),
+                                                 column(width = 4, 
+                                                        actionButton("toggleText.ai_compliance_sample", "Show/Hide Sample Details"),
+                                                        uiOutput("interpretation.ai_compliance_sample"))
+                                               ),
+                                               fluidRow(
+                                                 column(width = 12,
+                                                        h3(HTML("Confidence in managing AI privacy challenges")),
+                                                        h5(HTML("<i>Question: Do you feel confident that you/ your organization will be able to address privacy challenges that may arise when using AI tools or systems in your work?</i>"))),
+                                                 column(width = 6,
+                                                        highchartOutput("ai_challenge_plot")),
+                                                 column(width = 4,
+                                                        actionButton("toggleText.ai_challenge_sample", "Show/Hide Sample Details"),
+                                                        uiOutput("interpretation.ai_challenge_sample"))
+                                               ),
+                                               
+                                               fluidRow(
+                                                 column(width = 12,
+                                                        h3(HTML("Familiarity with 'Responsible AI' Principles")),
+                                                        h5(HTML("<i>Question: Are you familiar with “Responsible AI” principles?<br>Answer options: A great deal, Somewhat, Not at all</i>"))),
+                                                 column(width = 6,
+                                                        highchartOutput("ai_responsible_plot")),
+                                                 column(width = 4, 
+                                                        actionButton("toggleText.ai_responsible_sample", "Show/Hide Sample Details"),
+                                                        uiOutput("interpretation.ai_responsible_sample"))
+                                               )
+                                      ),
                                       tabPanel(title = "Wave 3 (December 2023)", #####  WAVE 3
                                                fluidRow(
                                                  column(width = 12,

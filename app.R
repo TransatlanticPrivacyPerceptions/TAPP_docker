@@ -527,7 +527,7 @@ server <- function(input, output, session) {
                labels = list(style = list(fontSize = "14px", color = "black")),
                lineColor = "lightgrey") %>%
       hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
-      hc_add_series(name = "Rank 1 (Most important)", data = priorities_approach_1_Europe$Value[priorities_approach_1_Europe$ranks == "Rank 1 (Most important)"], color = '#30482D',
+      hc_add_series(name = "Rank 1: Most important", data = priorities_approach_1_Europe$Value[priorities_approach_1_Europe$ranks == "Rank 1 (Most important)"], color = '#30482D',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
@@ -569,7 +569,7 @@ server <- function(input, output, session) {
                labels = list(style = list(fontSize = "14px", color = "black")),
                lineColor = "lightgrey") %>%
       hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
-      hc_add_series(name = "Rank 1 (Most important)", data = priorities_approach_1_USA$Value[priorities_approach_1_USA$ranks == "Rank 1 (Most important)"], color = '#30482D',
+      hc_add_series(name = "Rank 1: Most important", data = priorities_approach_1_USA$Value[priorities_approach_1_USA$ranks == "Rank 1 (Most important)"], color = '#30482D',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
@@ -619,7 +619,7 @@ server <- function(input, output, session) {
                labels = list(style = list(fontSize = "14px", color = "black")),
                lineColor = "lightgrey") %>%
       hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
-      hc_add_series(name = "Rank 1 (Most important)", data = priorities_approach_2_Europe$Value[priorities_approach_2_Europe$ranks == "Rank 1 (Most important)"], color = '#30482D',
+      hc_add_series(name = "Rank 1: Most important", data = priorities_approach_2_Europe$Value[priorities_approach_2_Europe$ranks == "Rank 1 (Most important)"], color = '#30482D',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
@@ -661,7 +661,7 @@ server <- function(input, output, session) {
                labels = list(style = list(fontSize = "14px", color = "black")),
                lineColor = "lightgrey") %>%
       hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
-      hc_add_series(name = "Rank 1 (Most important)", data = priorities_approach_2_USA$Value[priorities_approach_2_USA$ranks == "Rank 1 (Most important)"], color = '#30482D',
+      hc_add_series(name = "Rank 1: Most important", data = priorities_approach_2_USA$Value[priorities_approach_2_USA$ranks == "Rank 1 (Most important)"], color = '#30482D',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
@@ -1514,7 +1514,7 @@ server <- function(input, output, session) {
                labels = list(style = list(fontSize = "12px", color = "black")),
                lineColor = "lightgrey") %>%
       hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
-      hc_add_series(name = "Rank 5 (Least important)", data = priorities_w2_Europe$Value[priorities_w2_Europe$Important == "Rank 5 (Least important)"], color = '#D9E0D2',
+      hc_add_series(name = "Rank 5: Least important", data = priorities_w2_Europe$Value[priorities_w2_Europe$Important == "Rank 5 (Least important)"], color = '#D9E0D2',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
@@ -1534,7 +1534,7 @@ server <- function(input, output, session) {
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
                     legendIndex = 1) %>%
-      hc_add_series(name = "Rank 1 (Most important)", data = priorities_w2_Europe$Value[priorities_w2_Europe$Important == "Rank 1 (Most important)"], color = '#30482D',
+      hc_add_series(name = "Rank 1: Most important", data = priorities_w2_Europe$Value[priorities_w2_Europe$Important == "Rank 1 (Most important)"], color = '#30482D',
                     dataLabels = list(color = "white",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
@@ -1574,7 +1574,7 @@ server <- function(input, output, session) {
                labels = list(style = list(fontSize = "12px", color = "black")),
                lineColor = "lightgrey") %>%
       hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
-      hc_add_series(name = "Rank 5 (Least important)", data = priorities_w2_USA$Value[priorities_w2_USA$Important == "Rank 5 (Least important)"], color = '#D9E0D2',
+      hc_add_series(name = "Rank 5: Least important", data = priorities_w2_USA$Value[priorities_w2_USA$Important == "Rank 5 (Least important)"], color = '#D9E0D2',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
@@ -1594,7 +1594,7 @@ server <- function(input, output, session) {
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
                     legendIndex = 1) %>%
-      hc_add_series(name = "Rank 1 (Most important)", data = priorities_w2_USA$Value[priorities_w2_USA$Important == "Rank 1 (Most important)"], color = '#30482D',
+      hc_add_series(name = "Rank 1: Most important", data = priorities_w2_USA$Value[priorities_w2_USA$Important == "Rank 1 (Most important)"], color = '#30482D',
                     dataLabels = list(color = "white",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
@@ -1823,7 +1823,7 @@ server <- function(input, output, session) {
                labels = list(style = list(fontSize = "12px", color = "black")),
                lineColor = "lightgrey") %>%
       hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
-      hc_add_series(name = "Rank 5 (Least important)", data = priorities_w1_Europe$Value[priorities_w1_Europe$Important == "Rank 5 (Least important)"], color = '#D9E0D2',
+      hc_add_series(name = "Rank 5: Least important", data = priorities_w1_Europe$Value[priorities_w1_Europe$Important == "Rank 5 (Least important)"], color = '#D9E0D2',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
@@ -1843,7 +1843,7 @@ server <- function(input, output, session) {
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
                     legendIndex = 1) %>%
-      hc_add_series(name = "Rank 1 (Most important)", data = priorities_w1_Europe$Value[priorities_w1_Europe$Important == "Rank 1 (Most important)"], color = '#30482D',
+      hc_add_series(name = "Rank 1: Most important", data = priorities_w1_Europe$Value[priorities_w1_Europe$Important == "Rank 1 (Most important)"], color = '#30482D',
                     dataLabels = list(color = "white",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
@@ -1883,7 +1883,7 @@ server <- function(input, output, session) {
                labels = list(style = list(fontSize = "12px", color = "black")),
                lineColor = "lightgrey") %>%
       hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
-      hc_add_series(name = "Rank 5 (Least important)", data = priorities_w1_USA$Value[priorities_w1_USA$Important == "Rank 5 (Least important)"], color = '#D9E0D2',
+      hc_add_series(name = "Rank 5: Least important", data = priorities_w1_USA$Value[priorities_w1_USA$Important == "Rank 5 (Least important)"], color = '#D9E0D2',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
@@ -1903,7 +1903,7 @@ server <- function(input, output, session) {
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
                     legendIndex = 1) %>%
-      hc_add_series(name = "Rank 1 (Most important)", data = priorities_w1_USA$Value[priorities_w1_USA$Important == "Rank 1 (Most important)"], color = '#30482D',
+      hc_add_series(name = "Rank 1: Most important", data = priorities_w1_USA$Value[priorities_w1_USA$Important == "Rank 1 (Most important)"], color = '#30482D',
                     dataLabels = list(color = "white",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
@@ -2219,69 +2219,56 @@ server <- function(input, output, session) {
   ###########################################################################################################################################
   # Which frameworks and guidelines does your organization have for AI use? (e.g., OECD, IEEE, internal proprietary) 
   
-  # 
-  # output$ai_framework_use_plot <- renderHighchart({
-  #   
-  #   highchart() %>%
-  #     hc_chart(type = "packedbubble") %>%
-  #     hc_tooltip(
-  #       pointFormat = "{point.value}"
-  #     ) %>%
-  #     hc_plotOptions(
-  #       packedbubble = list(
-  #         minSize = "40%",
-  #         maxSize = "1200%",
-  #         zMin = 0,
-  #         zMax = 1000)
-  #     ) %>%
-  #     hc_add_series(name = "internal", data = ai_framework_use$count[ai_framework_use$framework == "internal"], color = '#244775',
-  #                   dataLabels = list(color = "black",
-  #                                     style = list(fontWeight = "normal"),
-  #                                     format = '{point.y:.0f}%'),
-  #                   legendIndex = 0) %>%
-  #     hc_add_series(name = "OECD", data = ai_framework_use$count[ai_framework_use$framework == "OECD"], color = '#7F956B',
-  #                   dataLabels = list(color = "black",
-  #                                     style = list(fontWeight = "normal"),
-  #                                     format = '{point.y:.0f}%'),
-  #                   legendIndex = 1) %>%
-  #     hc_add_series(name = "IEEE", data = ai_framework_use$count[ai_framework_use$framework == "IEEE"], color = '#FCDC97',
-  #                   dataLabels = list(color = "black",
-  #                                     style = list(fontWeight = "normal"),
-  #                                     format = '{point.y:.0f}%'),
-  #                   legendIndex = 2) %>%
-  #     hc_add_series(name = "NIST", data = ai_framework_use$count[ai_framework_use$framework == "NIST"], color = '#88B04B',
-  #                   dataLabels = list(color = "black",
-  #                                     style = list(fontWeight = "normal"),
-  #                                     format = '{point.y:.0f}%'),
-  #                   legendIndex = 3) %>%
-  #     hc_add_series(name = "ISO", data = ai_framework_use$count[ai_framework_use$framework == "ISO"], color = '#D65076',
-  #                   dataLabels = list(color = "black",
-  #                                     style = list(fontWeight = "normal"),
-  #                                     format = '{point.y:.0f}%'),
-  #                   legendIndex = 4) %>%
-  #     hc_add_series(name = "DFG", data = ai_framework_use$count[ai_framework_use$framework == "DFG"], color = '#6B5B95',
-  #                   dataLabels = list(color = "black",
-  #                                     style = list(fontWeight = "normal"),
-  #                                     format = '{point.y:.0f}%'),
-  #                   legendIndex = 5) %>%
-  #     hc_add_series(name = "Microsoft Responsible AI", data = ai_framework_use$count[ai_framework_use$framework == "Microsoft Responsible AI"], color = '#92A8D1',
-  #                   dataLabels = list(color = "black",
-  #                                     style = list(fontWeight = "normal"),
-  #                                     format = '{point.y:.0f}%'),
-  #                   legendIndex = 6) %>%
-  #     hc_add_series(name = "other", data = ai_framework_use$count[ai_framework_use$framework == "other"], color = '#FFB447',
-  #                   dataLabels = list(color = "black",
-  #                                     style = list(fontWeight = "normal"),
-  #                                     format = '{point.y:.0f}%'),
-  #                   legendIndex = 7) %>%
-  #     hc_legend(align = "left", layout = "vertical", verticalAlign = "top",
-  #               symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
-  #               itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
-  #                                fontStyle = "normal", color= "black"))
-  # })
-  # 
-  # serverTextDisplay.wave4("ai_framework_use_sample", textContent.wave4)
-  # 
+  output$ai_framework_use_plot <- renderHighchart({
+    highchart() %>%
+      hc_chart(type = "column",
+               height = 400,
+               marginTop = 120) %>%
+      hc_xAxis(categories = unique(ai_framework_use$category),
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "Internal", data = ai_framework_use$Value[ai_framework_use$Area == "Internal"], color = '#244775',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_add_series(name = "External", data = ai_framework_use$Value[ai_framework_use$Area == "External"], color = '#6C8ACC',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 1) %>%
+      hc_add_series(name = "Mixture of different frameworks", data = ai_framework_use$Value[ai_framework_use$Area == "Mixture of different frameworks"], color = '#BCCDE6',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 2) %>%
+      hc_plotOptions(column = list(stacking = "normal",
+                                   borderWidth = 0,
+                                   pointWidth = 55,
+                                   groupPadding = 0.1, # reduce the space between groups of columns
+                                   pointPadding = 0.1, # reduce the space between individual columns within the same group
+                                   dataLabels = list(enabled = TRUE,
+                                                     borderWidth = 0,
+                                                     format = '{point.percentage:.0f}%',
+                                                     style = list(textShadow = FALSE,
+                                                                  fontSize = "16px", fontFamily = "Assistant",
+                                                                  fontWeight = "normal",
+                                                                  textOutline = "none")
+                                   ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "center", layout = "vertical", verticalAlign = "top",
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+    
+  })
+  
+  serverTextDisplay.wave4("ai_framework_use_sample", textContent.wave4)
+  
+  
   ###########################################################################################################################################
   # 5th Plot of Wave 4: Intentions for organizational adoption of AI frameworks and guidelines
   ###########################################################################################################################################
@@ -2346,7 +2333,7 @@ server <- function(input, output, session) {
       hc_xAxis(categories = unique(ai_framework_draft$category),
                labels = list(style = list(fontSize = "14px", color = "black")),
                lineColor = "lightgrey") %>%
-      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 101) %>%
       hc_add_series(name = "Yes", data = ai_framework_draft$Value[ai_framework_draft$Area == "Yes"], color = '#244775',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
@@ -2480,40 +2467,52 @@ server <- function(input, output, session) {
   ###########################################################################################################################################
   # Question: How do you/ does your organization plan to address such challenges? 
   
-  # output$ai_challenge_plan_chart <- renderHighchart({
-  #   
-  #   highchart() %>%
-  #     hc_chart(type = "bar",
-  #              height = 400,
-  #              marginTop = 0,
-  #              marginLeft = 600) %>%
-  #     hc_xAxis(categories = unique(ai_challenge_plan$answers),
-  #              labels = list(style = list(fontSize = "14px", color = "black")),
-  #              lineColor = "lightgrey") %>%
-  #     hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
-  #     hc_add_series(name = "n = 14", data = ai_challenge_plan$count,
-  #                   color = '#4B77C5',
-  #                   dataLabels = list(color = "black",
-  #                                     style = list(fontWeight = "normal"),
-  #                                     format = '{point.y:.0f}'),
-  #                   legendIndex = 0,
-  #                   showInLegend = FALSE) %>%
-  #     hc_plotOptions(bar = list(borderRadius = 0, # set to 0 instead of "0%"
-  #                               dataLabels = list(enabled = TRUE,
-  #                                                 borderWidth = 0,
-  #                                                 format = '{point.y:.0f}',
-  #                                                 style = list(textShadow = FALSE, # ensure this is correct
-  #                                                              fontSize = "16px", fontFamily = "Assistant",
-  #                                                              fontWeight = "normal",
-  #                                                              textOutline = "none")),
-  #                               groupPadding = 0.1)) %>%
-  #     hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
-  # })
+  output$ai_challenge_plan_chart <- renderHighchart({
+    
+    highchart() %>%
+      hc_chart(type = "bar",
+               height = 400,
+               marginTop = 0) %>%
+      hc_xAxis(categories = unique(ai_challenge_plan$topics_ai_challenge_plan_oe),
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "Europe <br> (n = 11)", data = ai_challenge_plan$share[ai_challenge_plan$region_combined == "Europe <br> (n = 11)"],
+                    color = '#4B77C5',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_add_series(name = "USA <br>(n = 3)", data = ai_challenge_plan$share[ai_challenge_plan$region_combined == "USA <br>(n = 3)"],
+                    color = '#7F956B',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 1) %>%
+      hc_plotOptions(bar = list(borderRadius = "0%",
+                                dataLabels = list(enabled = TRUE,
+                                                  borderWidth = 0,
+                                                  format = '{point.percentage:.0f}%',
+                                                  style = list(textShadow = FALSE,
+                                                               fontSize = "16px", fontFamily = "Assistant",
+                                                               fontWeight = "normal",
+                                                               textOutline = "none")),
+                                groupPadding = 0.1)) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(title = list(text = 'Region<br><i><span style="font-size: 9px; color: #666; font-weight: normal">(Click to hide)</i></span>'),
+                align = "left", layout = "vertical", verticalAlign = "middle",
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2, useHTML = TRUE,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+    
+  })
   
-  # serverTextDisplay.wave4("ai_challenge_plan_sample", textContent.wave4)
+  serverTextDisplay.wave4("ai_challenge_plan_sample", textContent.wave4)
   
   ###########################################################################################################################################
-  # 11th Plot of Wave 4:  Confidence in managing AI privacy challenges
+  # 10th Plot of Wave 4:  Confidence in managing AI privacy challenges
   ###########################################################################################################################################
   # Are you familiar with “Responsible AI” principles?
   # ●	Not at all

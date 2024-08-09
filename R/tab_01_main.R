@@ -71,7 +71,7 @@ erstelleTab_front <- function() {
                                                  column(width = 12,
                                                         h3(HTML("Most important approach in protecting people‘s digital privacy")),
                                                         h4(HTML("Adapting privacy laws to technological developments")),
-                                                        h5(HTML("<i>Question: How would you rank the importance of the following approaches to protecting people’s digital privacy?<br>Answer options: Adapting privacy laws to technological developments
+                                                        h5(HTML("<i>Question: How would you rank the importance of the following approaches to protecting people’s digital privacy?<br>Ranked as most important: Adapting privacy laws to technological developments
                                                                </i>")
                                                         )),
                                                  column(width = 4,
@@ -89,7 +89,7 @@ erstelleTab_front <- function() {
                                                  column(width = 12,
                                                         h3(HTML("Most important approach in protecting people‘s digital privacy")),
                                                         h4(HTML("Giving individuals control over their data")),
-                                                        h5(HTML("<i>Question: How would you rank the importance of the following approaches to protecting people’s digital privacy?<br>Answer options: Giving individuals control over their data</i>"))
+                                                        h5(HTML("<i>Question: How would you rank the importance of the following approaches to protecting people’s digital privacy?<br>Ranked as most important: Giving individuals control over their data</i>"))
                                                  ),
                                                  column(width = 4,
                                                         highchartOutput("priorities_chart_ap2_Euro")
@@ -135,7 +135,16 @@ erstelleTab_front <- function() {
                                                         actionButton("toggleText.ai_org_framework_sample", "Show/Hide Sample Details"),
                                                         uiOutput("interpretation.ai_org_framework_sample"))
                                                ),
-                                               
+                                               fluidRow(
+                                                 column(width = 12,
+                                                        h3(HTML("AI frameworks and guidelines used by organizations")),
+                                                        h5(HTML("<i>Question: Which frameworks and guidelines does your organization have for AI use? (e.g., OECD, IEEE, internal proprietary)</i>"))),
+                                                 column(width = 6,
+                                                        highchartOutput("ai_framework_use_plot")),
+                                                 column(width = 4,
+                                                        actionButton("toggleText.ai_framework_use_sample", "Show/Hide Sample Details"),
+                                                        uiOutput("interpretation.ai_framework_use_sample"))
+                                               ),
                                                fluidRow(
                                                  column(width = 12,
                                                         h3(HTML("Intentions for organizational adoption of AI frameworks and guidelines")),
@@ -176,7 +185,16 @@ erstelleTab_front <- function() {
                                                         actionButton("toggleText.ai_challenge_sample", "Show/Hide Sample Details"),
                                                         uiOutput("interpretation.ai_challenge_sample"))
                                                ),
-                                               
+                                               fluidRow(
+                                                 column(width = 12,
+                                                        h3(HTML("Intentions for managing AI privacy challenges")),
+                                                        h5(HTML("<i>Question: How do you/ does your organization plan to address such challenges?</i>"))),
+                                                 column(width = 12,
+                                                        highchartOutput("ai_challenge_plan_chart")),
+                                                 column(width = 4,
+                                                        actionButton("toggleText.ai_challenge_plan_sample", "Show/Hide Sample Details"),
+                                                        uiOutput("interpretation.ai_challenge_plan_sample"))
+                                               ),
                                                fluidRow(
                                                  column(width = 12,
                                                         h3(HTML("Familiarity with 'Responsible AI' Principles")),

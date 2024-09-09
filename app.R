@@ -2380,13 +2380,13 @@ server <- function(input, output, session) {
                labels = list(style = list(fontSize = "14px", color = "black")),
                lineColor = "lightgrey") %>%
       hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
-      hc_add_series(name = "Europe <br> (n = 34)", data = ai_compliance$share[ai_compliance$region == "Europe <br> (n = 34)"],
+      hc_add_series(name = "Europe <br> (n = 30)", data = ai_compliance$share[ai_compliance$region == "Europe <br> (n = 30)"],
                     color = '#4B77C5',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
                     legendIndex = 0) %>%
-      hc_add_series(name = "USA <br>(n = 27)", data = ai_compliance$share[ai_compliance$region == "USA <br>(n = 27)"],
+      hc_add_series(name = "USA <br>(n = 18)", data = ai_compliance$share[ai_compliance$region == "USA <br>(n = 18)"],
                     color = '#7F956B',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),

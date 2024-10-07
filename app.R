@@ -47,6 +47,24 @@ server <- function(input, output, session) {
     })
   }
   
+  createTextDisplay.wave1 <- function(id, textContent.wave1) {
+    uiOutput(outputId = paste0("interpretation.", id))
+  }
+  
+  serverTextDisplay.wave1 <- function(id, textContent.wave1) {
+    textVisible <- reactiveVal(FALSE)
+    
+    observeEvent(input[[paste0("toggleText.", id)]], {
+      textVisible(!textVisible())
+    })
+    
+    output[[paste0("interpretation.", id)]] <- renderUI({
+      if (textVisible()) {
+        h6(HTML(textContent.wave1))
+      }
+    })
+  }  
+  
   createTextDisplay.wave2 <- function(id, textContent.wave2) {
     uiOutput(outputId = paste0("interpretation.", id))
   }
@@ -102,12 +120,11 @@ server <- function(input, output, session) {
     })
   }
   
-  
-  createTextDisplay.wave1 <- function(id, textContent.wave1) {
+  createTextDisplay.wave5 <- function(id, textContent.wave5) {
     uiOutput(outputId = paste0("interpretation.", id))
   }
   
-  serverTextDisplay.wave1 <- function(id, textContent.wave1) {
+  serverTextDisplay.wave5 <- function(id, textContent.wave5) {
     textVisible <- reactiveVal(FALSE)
     
     observeEvent(input[[paste0("toggleText.", id)]], {
@@ -116,10 +133,12 @@ server <- function(input, output, session) {
     
     output[[paste0("interpretation.", id)]] <- renderUI({
       if (textVisible()) {
-        h6(HTML(textContent.wave1))
+        h6(HTML(textContent.wave5))
       }
     })
-  }  
+  }
+  
+  
   
   observe({
     shinyjs::click("btn_current_state")
@@ -256,30 +275,30 @@ server <- function(input, output, session) {
     highchart() %>%
       hc_chart(type = "column",
                height = 400,
-               marginTop = 120) %>%
+               marginTop = 130) %>%
       hc_title(text = "<b>Europe</b>", margin = 1,
                align = "center",
                style = list(color = "black", useHTML = TRUE)) %>%
-      hc_xAxis(categories = unique(orgs_rating_priv.15_Europe$category_n),
+      hc_xAxis(categories = unique(law_enforcement_Europe$category_n),
                labels = list(style = list(fontSize = "14px", color = "black")),
                lineColor = "lightgrey") %>%
       hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
-      hc_add_series(name = "Mostly", data = orgs_rating_priv.15_Europe$Value[orgs_rating_priv.15_Europe$Rating == "Mostly"], color = '#681E13',
+      hc_add_series(name = "Mostly", data = law_enforcement_Europe$Value[law_enforcement_Europe$Rating == "Mostly"], color = '#681E13',
                     dataLabels = list(color = "white",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
                     legendIndex = 0) %>%
-      hc_add_series(name = "Somewhat", data = orgs_rating_priv.15_Europe$Value[orgs_rating_priv.15_Europe$Rating == "Somewhat"], color = '#E69037',
+      hc_add_series(name = "Somewhat", data = law_enforcement_Europe$Value[law_enforcement_Europe$Rating == "Somewhat"], color = '#E69037',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
                     legendIndex = 1) %>%
-      hc_add_series(name = "A little", data = orgs_rating_priv.15_Europe$Value[orgs_rating_priv.15_Europe$Rating == "A little"], color = '#F6BB51',
+      hc_add_series(name = "A little", data = law_enforcement_Europe$Value[law_enforcement_Europe$Rating == "A little"], color = '#F6BB51',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
                     legendIndex = 2) %>%
-      hc_add_series(name = "Not at all", data = orgs_rating_priv.15_Europe$Value[orgs_rating_priv.15_Europe$Rating == "Not at all"], color = '#FCDC97',
+      hc_add_series(name = "Not at all", data = law_enforcement_Europe$Value[law_enforcement_Europe$Rating == "Not at all"], color = '#FCDC97',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
@@ -296,7 +315,7 @@ server <- function(input, output, session) {
                                                                   textOutline = "none")
                                    ))) %>%
       hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
-      hc_legend(align = "center", layout = "vertical", verticalAlign = "top",
+      hc_legend(align = "center", layout = "vertical", verticalAlign = "top", useHTML = TRUE,
                 symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
                 itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
                                  color= "black")) %>%
@@ -310,30 +329,30 @@ server <- function(input, output, session) {
     highchart() %>%
       hc_chart(type = "column",
                height = 400,
-               marginTop = 120) %>%
+               marginTop = 130) %>%
       hc_title(text = "<b>USA</b>", margin = 1,
                align = "center",
                style = list(color = "black", useHTML = TRUE)) %>%
-      hc_xAxis(categories = unique(orgs_rating_priv.15_USA$category_n),
+      hc_xAxis(categories = unique(law_enforcement_USA$category_n),
                labels = list(style = list(fontSize = "14px", color = "black")),
                lineColor = "lightgrey") %>%
       hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
-      hc_add_series(name = "Mostly", data = orgs_rating_priv.15_USA$Value[orgs_rating_priv.15_USA$Rating == "Mostly"], color = '#681E13',
+      hc_add_series(name = "Mostly", data = law_enforcement_USA$Value[law_enforcement_USA$Rating == "Mostly"], color = '#681E13',
                     dataLabels = list(color = "white",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
                     legendIndex = 0) %>%
-      hc_add_series(name = "Somewhat", data = orgs_rating_priv.15_USA$Value[orgs_rating_priv.15_USA$Rating == "Somewhat"], color = '#E69037',
+      hc_add_series(name = "Somewhat", data = law_enforcement_USA$Value[law_enforcement_USA$Rating == "Somewhat"], color = '#E69037',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
                     legendIndex = 1) %>%
-      hc_add_series(name = "A little", data = orgs_rating_priv.15_USA$Value[orgs_rating_priv.15_USA$Rating == "A little"], color = '#F6BB51',
+      hc_add_series(name = "A little", data = law_enforcement_USA$Value[law_enforcement_USA$Rating == "A little"], color = '#F6BB51',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
                     legendIndex = 2) %>%
-      hc_add_series(name = "Not at all", data = orgs_rating_priv.15_USA$Value[orgs_rating_priv.15_USA$Rating == "Not at all"], color = '#FCDC97',
+      hc_add_series(name = "Not at all", data = law_enforcement_USA$Value[law_enforcement_USA$Rating == "Not at all"], color = '#FCDC97',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
@@ -341,8 +360,6 @@ server <- function(input, output, session) {
       hc_plotOptions(column = list(stacking = "normal",
                                    borderWidth = 0,
                                    pointWidth = 55,
-                                   groupPadding = 0.1, # reduce the space between groups of columns
-                                   pointPadding = 0.1, # reduce the space between individual columns within the same group
                                    dataLabels = list(enabled = TRUE,
                                                      borderWidth = 0,
                                                      format = '{point.percentage:.0f}%',
@@ -352,7 +369,7 @@ server <- function(input, output, session) {
                                                                   textOutline = "none")
                                    ))) %>%
       hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
-      hc_legend(align = "center", layout = "vertical", verticalAlign = "top",
+      hc_legend(align = "center", layout = "vertical", verticalAlign = "top", useHTML = TRUE,
                 symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
                 itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
                                  color= "black")) %>%
@@ -515,7 +532,7 @@ server <- function(input, output, session) {
   # ●	Developing technical solutions to ensure individuals cannot be identified
   
   # First approach Europe: Adapting privacy laws to respond to current technological developments
-  output$priorities_chart_ap1_Euro <- renderHighchart({
+  output$priorities_chart_approach_1_EU <- renderHighchart({
     highchart() %>%
       hc_chart(type = "column",
                height = 400,
@@ -557,7 +574,7 @@ server <- function(input, output, session) {
   })
   
   # First approach USA: Adapting privacy laws to respond to current technological developments
-  output$priorities_chart_ap1_USA <- renderHighchart({
+  output$priorities_chart_approach_1_USA <- renderHighchart({
     highchart() %>%
       hc_chart(type = "column",
                height = 400,
@@ -607,7 +624,7 @@ server <- function(input, output, session) {
   
   
   # Second approach for Europe: Giving individuals control over their data
-  output$priorities_chart_ap2_Euro <- renderHighchart({
+  output$priorities_chart_approach_2_EU <- renderHighchart({
     highchart() %>%
       hc_chart(type = "column",
                height = 400,
@@ -649,7 +666,7 @@ server <- function(input, output, session) {
   })
   
   # Second approach for USA: Giving individuals control over their data
-  output$priorities_chart_ap2_USA <- renderHighchart({
+  output$priorities_chart_approach_2_USA <- renderHighchart({
     highchart() %>%
       hc_chart(type = "column",
                height = 400,
@@ -692,7 +709,837 @@ server <- function(input, output, session) {
   
   serverTextDisplay.time.series("priorities_sample2", textContent.time.series)
   
+  ###########################################################################################################################################
+  # 6th two plots of Trend Analysis: Balance of interest in digital privacy laws
+  ###########################################################################################################################################
+  # Q:  law_favor_tech
+  # Do you think digital privacy laws and regulations in [the U.S. / the EU / country] more strongly favor the rights and needs of businesses or of individual users? 
+  # ●	Strongly favor businesses
+  # ●	Somewhat favor businesses
+  # ●	Favor neither businesses nor individual users
+  # ●	Somewhat favor individual users
+  # ●	Strongly favor individual users
   
+  output$law_favor_tech_chart_Europe <- renderHighchart({
+    highchart() %>%
+      hc_chart(type = "column",
+               height = 400,
+               marginTop = 120) %>%
+      hc_title(text = "<b>Europe</b>", margin = 1,
+               align = "center",
+               style = list(color = "black", useHTML = TRUE)) %>%
+      hc_xAxis(categories = unique(law_favor_tech_Europe$category_n),
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "(Somewhat/Strongly) favor businesses", data = law_favor_tech_Europe$Value[law_favor_tech_Europe$Rating == "(Somewhat/Strongly) favor businesses"], color = '#244775',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_add_series(name = "Favor neither businesses nor individual users", data = law_favor_tech_Europe$Value[law_favor_tech_Europe$Rating == "Favor neither businesses nor individual users"], color = '#7F956B',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 1) %>%
+      hc_add_series(name = "(Strongly/Somewhat) favor individual users", data = law_favor_tech_Europe$Value[law_favor_tech_Europe$Rating == "(Strongly/Somewhat) favor individual users"], color = '#FCDC97',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 2) %>%
+      hc_plotOptions(column = list(stacking = "normal",
+                                   borderWidth = 0,
+                                   pointWidth = 55,
+                                   dataLabels = list(enabled = TRUE,
+                                                     borderWidth = 0,
+                                                     format = '{point.percentage:.0f}%',
+                                                     style = list(textShadow = FALSE,
+                                                                  fontSize = "16px", fontFamily = "Assistant",
+                                                                  fontWeight = "normal",
+                                                                  textOutline = "none")
+                                   ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "center", layout = "vertical", verticalAlign = "top",
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+    
+  })
+  
+  
+  output$law_favor_tech_chart_USA <- renderHighchart({
+    highchart() %>%
+      hc_chart(type = "column",
+               height = 400,
+               marginTop = 120) %>%
+      hc_title(text = "<b>USA</b>", margin = 1,
+               align = "center",
+               style = list(color = "black", useHTML = TRUE)) %>%
+      hc_xAxis(categories = unique(law_favor_tech_USA$category_n),
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "(Somewhat/Strongly) favor businesses", data = law_favor_tech_USA$Value[law_favor_tech_USA$Rating == "(Somewhat/Strongly) favor businesses"], color = '#244775',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_add_series(name = "Favor neither businesses nor individual users", data = law_favor_tech_USA$Value[law_favor_tech_USA$Rating == "Favor neither businesses nor individual users"], color = '#7F956B',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 1) %>%
+      hc_add_series(name = "(Strongly/Somewhat) favor individual users", data = law_favor_tech_USA$Value[law_favor_tech_USA$Rating == "(Strongly/Somewhat) favor individual users"], color = '#FCDC97',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 2) %>%
+      hc_plotOptions(column = list(stacking = "normal",
+                                   borderWidth = 0,
+                                   pointWidth = 55,
+                                   dataLabels = list(enabled = TRUE,
+                                                     borderWidth = 0,
+                                                     format = '{point.percentage:.0f}%',
+                                                     style = list(textShadow = FALSE,
+                                                                  fontSize = "16px", fontFamily = "Assistant",
+                                                                  fontWeight = "normal",
+                                                                  textOutline = "none")
+                                   ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "center", layout = "vertical", verticalAlign = "top",
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+    
+  })
+  
+  
+  serverTextDisplay.time.series("law_favor_tech_trend_sample", textContent.time.series)
+  
+  ###########################################################################################################################################
+  # 7th two plots of Trend Analysis: Influence of laws on development of privacy-preserving practices and technologies
+  ###########################################################################################################################################
+  # Q:  law_innovation
+  #Do you think digital privacy laws and regulations in [the U.S. / the EU / country] encourage or discourage innovation and development of privacy-preserving practices and technologies in organizations?
+  #●	Strongly encourage innovation and development
+  #●	Somewhat encourage innovation and development
+  #●	Neither encourage nor discourage innovation and development
+  #●	Somewhat discourage innovation and development
+  #●	Strongly discourage innovation and development
+  
+  output$law_innovation_chart_Europe <- renderHighchart({
+    highchart() %>%
+      hc_chart(type = "column",
+               height = 400,
+               marginTop = 120) %>%
+      hc_title(text = "<b>Europe</b>", margin = 1,
+               align = "center",
+               style = list(color = "black", useHTML = TRUE)) %>%
+      hc_xAxis(categories = unique(law_innovation_Europe$category_n),
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "(Strongly/Somewhat) discourage innovation and development", data = law_innovation_Europe$Value[law_innovation_Europe$Rating == "(Strongly/Somewhat) discourage innovation and development"], color = '#244775',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_add_series(name = "Neutral", data = law_innovation_Europe$Value[law_innovation_Europe$Rating == "Neutral"], color = '#7F956B',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 1) %>%
+      hc_add_series(name = "(Somewhat/Strongly) encourage innovation and development", data = law_innovation_Europe$Value[law_innovation_Europe$Rating == "(Somewhat/Strongly) encourage innovation and development"], color = '#FCDC97',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 2) %>%
+      hc_plotOptions(column = list(stacking = "normal",
+                                   borderWidth = 0,
+                                   pointWidth = 55,
+                                   dataLabels = list(enabled = TRUE,
+                                                     borderWidth = 0,
+                                                     format = '{point.percentage:.0f}%',
+                                                     style = list(textShadow = FALSE,
+                                                                  fontSize = "16px", fontFamily = "Assistant",
+                                                                  fontWeight = "normal",
+                                                                  textOutline = "none")
+                                   ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "center", layout = "vertical", verticalAlign = "top",
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+    
+  })
+  
+  
+  output$law_innovation_chart_USA <- renderHighchart({
+    highchart() %>%
+      hc_chart(type = "column",
+               height = 400,
+               marginTop = 120) %>%
+      hc_title(text = "<b>USA</b>", margin = 1,
+               align = "center",
+               style = list(color = "black", useHTML = TRUE)) %>%
+      hc_xAxis(categories = unique(law_innovation_USA$category_n),
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "(Strongly/Somewhat) discourage innovation and development", data = law_innovation_USA$Value[law_innovation_USA$Rating == "(Strongly/Somewhat) discourage innovation and development"], color = '#244775',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_add_series(name = "Neutral", data = law_innovation_USA$Value[law_innovation_USA$Rating == "Neutral"], color = '#7F956B',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 1) %>%
+      hc_add_series(name = "(Somewhat/Strongly) encourage innovation and development", data = law_innovation_USA$Value[law_innovation_USA$Rating == "(Somewhat/Strongly) encourage innovation and development"], color = '#FCDC97',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 2) %>%
+      hc_plotOptions(column = list(stacking = "normal",
+                                   borderWidth = 0,
+                                   pointWidth = 55,
+                                   dataLabels = list(enabled = TRUE,
+                                                     borderWidth = 0,
+                                                     format = '{point.percentage:.0f}%',
+                                                     style = list(textShadow = FALSE,
+                                                                  fontSize = "16px", fontFamily = "Assistant",
+                                                                  fontWeight = "normal",
+                                                                  textOutline = "none")
+                                   ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "center", layout = "vertical", verticalAlign = "top",
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+    
+  })
+  
+  
+  serverTextDisplay.time.series("law_innovation_trend_sample", textContent.time.series)
+  
+  ###########################################################################################################################################
+  # 8th two plots of Trend Analysis:  Current and future outlook of digital privacy laws (Europe)
+  ###########################################################################################################################################
+  # Q: state_current_law and Q: state_outlook_law
+  # Overall, how would you rate digital privacy laws and regulations in [the U.S. / the EU / country] today?
+  # ●	Excellent
+  # ●	Good
+  # ●	Fair
+  # ●	Poor
+  # In the next few years, how optimistic or pessimistic are you that
+  # digital privacy laws and regulations in your region [of expertise] will move in the
+  # direction you prefer?
+  # ●	Very optimistic
+  # ●	Somewhat optimistic
+  # ●	Neither
+  # ●	Somewhat pessimistic
+  # ●	Very pessimistic
+  
+  # Europe
+  output$StatelawCurrent_Europe <- renderHighchart({
+    highchart() %>%
+      hc_chart(type = "column",
+               height = 400,
+               marginTop = 120) %>%
+      hc_title(text = "<b>Current State</b>", margin = 1,
+               align = "center",
+               style = list(color = "black", useHTML = TRUE)) %>%
+      hc_subtitle(text = "<i>Question: Overall, how would you rate digital privacy laws
+                and regulations in the EU today?</i>",
+                  align = "center",
+                  style = list(color = "black", fontSize = "13px", useHTML = TRUE)) %>%
+      hc_xAxis(categories = unique(state_current_law_Europe$category_n),
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "Good/Excellent", data = state_current_law_Europe$Value[state_current_law_Europe$Rating == "Good/Excellent"], color = '#244775',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_add_series(name = "Poor/Fair", data = state_current_law_Europe$Value[state_current_law_Europe$Rating == "Poor/Fair"], color = '#FCDC97',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 1) %>%
+      hc_plotOptions(column = list(stacking = "normal",
+                                   borderWidth = 0,
+                                   pointWidth = 55,
+                                   groupPadding = 0.1, # reduce the space between groups of columns
+                                   pointPadding = 0.1, # reduce the space between individual columns within the same group
+                                   dataLabels = list(enabled = TRUE,
+                                                     borderWidth = 0,
+                                                     format = '{point.percentage:.0f}%',
+                                                     style = list(textShadow = FALSE,
+                                                                  fontSize = "16px", fontFamily = "Assistant",
+                                                                  fontWeight = "normal",
+                                                                  textOutline = "none")
+                                   ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "right", layout = "vertical", verticalAlign = "middle", useHTML = TRUE,
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+  })
+  
+  output$StatelawFuture_Europe <- renderHighchart({
+    
+    highchart() %>%
+      hc_chart(type = "column",
+               height = 400,
+               marginTop = 120) %>%
+      hc_title(text = "<b>Future Outlook</b>", margin = 1,
+               align = "center",
+               style = list(color = "black", useHTML = TRUE)) %>%
+      hc_subtitle(text = "<i>Question: In the next few years, how optimistic or pessimistic are you that
+                digital privacy laws and regulations in the EU will move in the
+                direction you prefer?</i>",
+                  align = "center",
+                  style = list(color = "black", fontSize = "13px", useHTML = TRUE)) %>%
+      hc_xAxis(categories = unique(state_outlook_law_Europe$category_n),
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "(Somewhat/Very)<br>optimistic", data = state_outlook_law_Europe$Value[state_outlook_law_Europe$Rating == "(Somewhat/Very) optimistic"], color = '#244775',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_add_series(name = "Neither", data = state_outlook_law_Europe$Value[state_outlook_law_Europe$Rating == "Neither"], color = '#7F956B',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 1) %>%
+      hc_add_series(name = "(Very/Somewhat)<br>pessimistic", data = state_outlook_law_Europe$Value[state_outlook_law_Europe$Rating == "(Very/Somewhat) pessimistic"], color = '#FCDC97',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 2) %>%
+      hc_plotOptions(column = list(stacking = "normal",
+                                   borderWidth = 0,
+                                   pointWidth = 55,
+                                   groupPadding = 0.1, # reduce the space between groups of columns
+                                   pointPadding = 0.1, # reduce the space between individual columns within the same group
+                                   dataLabels = list(enabled = TRUE,
+                                                     borderWidth = 0,
+                                                     format = '{point.percentage:.0f}%',
+                                                     style = list(textShadow = FALSE,
+                                                                  fontSize = "16px", fontFamily = "Assistant",
+                                                                  fontWeight = "normal",
+                                                                  textOutline = "none")
+                                   ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "right", layout = "vertical", verticalAlign = "middle", useHTML = TRUE,
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+  })
+  
+  serverTextDisplay.time.series("StatelawCombined_Europe_sample", textContent.time.series)
+  
+  ###########################################################################################################################################
+  # 9th two plots of Trend Analysis:  Current and future outlook of digital privacy laws (USA)
+  ###########################################################################################################################################
+  # Q: state_current_law and Q: state_outlook_law
+  # Overall, how would you rate digital privacy laws and regulations in [the U.S. / the EU / country] today?
+  # ●	Excellent
+  # ●	Good
+  # ●	Fair
+  # ●	Poor
+  # In the next few years, how optimistic or pessimistic are you that
+  # digital privacy laws and regulations in your region [of expertise] will move in the
+  # direction you prefer?
+  # ●	Very optimistic
+  # ●	Somewhat optimistic
+  # ●	Neither
+  # ●	Somewhat pessimistic
+  # ●	Very pessimistic
+  
+  # USA
+  output$StatelawCurrent_USA <- renderHighchart({
+    highchart() %>%
+      hc_chart(type = "column",
+               height = 400,
+               marginTop = 120) %>%
+      hc_title(text = "<b>Current State</b>", margin = 1,
+               align = "center",
+               style = list(color = "black", useHTML = TRUE)) %>%
+      hc_subtitle(text = "<i>Question: Overall, how would you rate digital privacy laws
+                and regulations in the US today?</i>",
+                  align = "center",
+                  style = list(color = "black", fontSize = "13px", useHTML = TRUE)) %>%
+      hc_xAxis(categories = unique(state_current_law_USA$category_n),
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "Good/Excellent", data = state_current_law_USA$Value[state_current_law_USA$Rating == "Good/Excellent"], color = '#244775',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_add_series(name = "Poor/Fair", data = state_current_law_USA$Value[state_current_law_USA$Rating == "Poor/Fair"], color = '#FCDC97',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 1) %>%
+      hc_plotOptions(column = list(stacking = "normal",
+                                   borderWidth = 0,
+                                   pointWidth = 55,
+                                   groupPadding = 0.1, # reduce the space between groups of columns
+                                   pointPadding = 0.1, # reduce the space between individual columns within the same group
+                                   dataLabels = list(enabled = TRUE,
+                                                     borderWidth = 0,
+                                                     format = '{point.percentage:.0f}%',
+                                                     style = list(textShadow = FALSE,
+                                                                  fontSize = "16px", fontFamily = "Assistant",
+                                                                  fontWeight = "normal",
+                                                                  textOutline = "none")
+                                   ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "right", layout = "vertical", verticalAlign = "middle", useHTML = TRUE,
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+  })
+  
+  output$StatelawFuture_USA <- renderHighchart({
+    
+    highchart() %>%
+      hc_chart(type = "column",
+               height = 400,
+               marginTop = 120) %>%
+      hc_title(text = "<b>Future Outlook</b>", margin = 1,
+               align = "center",
+               style = list(color = "black", useHTML = TRUE)) %>%
+      hc_subtitle(text = "<i>Question: In the next few years, how optimistic or pessimistic are you that
+                digital privacy laws and regulations in the US will move in the
+                direction you prefer?</i>",
+                  align = "center",
+                  style = list(color = "black", fontSize = "13px", useHTML = TRUE)) %>%
+      hc_xAxis(categories = unique(state_outlook_law_USA$category_n),
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "(Somewhat/Very)<br>optimistic", data = state_outlook_law_USA$Value[state_outlook_law_USA$Rating == "(Somewhat/Very) optimistic"], color = '#244775',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_add_series(name = "Neither", data = state_outlook_law_USA$Value[state_outlook_law_USA$Rating == "Neither"], color = '#7F956B',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 1) %>%
+      hc_add_series(name = "(Very/Somewhat)<br>pessimistic", data = state_outlook_law_USA$Value[state_outlook_law_USA$Rating == "(Very/Somewhat) pessimistic"], color = '#FCDC97',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 2) %>%
+      hc_plotOptions(column = list(stacking = "normal",
+                                   borderWidth = 0,
+                                   pointWidth = 55,
+                                   groupPadding = 0.1, # reduce the space between groups of columns
+                                   pointPadding = 0.1, # reduce the space between individual columns within the same group
+                                   dataLabels = list(enabled = TRUE,
+                                                     borderWidth = 0,
+                                                     format = '{point.percentage:.0f}%',
+                                                     style = list(textShadow = FALSE,
+                                                                  fontSize = "16px", fontFamily = "Assistant",
+                                                                  fontWeight = "normal",
+                                                                  textOutline = "none")
+                                   ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "right", layout = "vertical", verticalAlign = "middle", useHTML = TRUE,
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+  })
+  
+  
+  serverTextDisplay.time.series("StatelawCombined_USA_sample", textContent.time.series)
+  
+  ###########################################################################################################################################
+  # 10th plots of Trend Analysis: Policymaking approaches in digital privacy protection
+  ###########################################################################################################################################
+  # Q:  policymaking_US
+  # Do you think that digital privacy policy in the US should be made at the …
+  # ●	federal level
+  # ●	state level
+  # ●	Both [PRG: Anchor]
+  # Q:  policymaking_EU
+  # Do you think that digital privacy policy in the EU should be made at the …
+  # ●	EU-level
+  # ●	EU member-state level
+  # ●	Both [PRG: Anchor]
+  
+  # Render the selected plot for Europe
+  output$policymaking_trend_chart_Europe <- renderHighchart({
+    highchart() %>%
+      hc_chart(type = "column",
+               height = 400,
+               marginTop = 120) %>%
+      hc_title(text = "<b>Europe</b>", margin = 1,
+               align = "center",
+               style = list(color = "black", useHTML = TRUE)) %>%
+      hc_xAxis(categories = unique(policymaking_Europe$category_n),
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "EU Level", data = policymaking_Europe$Value[policymaking_Europe$Area == "Europe Level"], color = '#244775',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_add_series(name = "EU Member-State Level", data = policymaking_Europe$Value[policymaking_Europe$Area == "EU Member-State Level"], color = '#FCDC97',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 1) %>%
+      hc_add_series(name = "Both", data = policymaking_Europe$Value[policymaking_Europe$Area == "Both"], color = '#7F956B',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 2) %>%
+      hc_plotOptions(column = list(stacking = "normal",
+                                   borderWidth = 0,
+                                   pointWidth = 55,
+                                   dataLabels = list(enabled = TRUE,
+                                                     borderWidth = 0,
+                                                     format = '{point.percentage:.0f}%',
+                                                     style = list(textShadow = FALSE,
+                                                                  fontSize = "16px", fontFamily = "Assistant",
+                                                                  fontWeight = "normal",
+                                                                  textOutline = "none")
+                                   ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "center", layout = "vertical", verticalAlign = "top",
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+    
+  })
+  
+  # Render the selected plot for USA
+  output$policymaking_trend_chart_USA <- renderHighchart({
+    highchart() %>%
+      hc_chart(type = "column",
+               height = 400,
+               marginTop = 120) %>%
+      hc_title(text = "<b>USA</b>", margin = 1,
+               align = "center",
+               style = list(color = "black", useHTML = TRUE)) %>%
+      hc_xAxis(categories = policymaking_USA$category_n,
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "Federal Level", data = policymaking_USA$Value[policymaking_USA$Area == "Federal Level"], color = '#244775',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_add_series(name = "State Level", data = policymaking_USA$Value[policymaking_USA$Area == "State Level"], color = '#FCDC97',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 1) %>%
+      hc_add_series(name = "Both", data = policymaking_USA$Value[policymaking_USA$Area == "Both"], color = '#7F956B',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 2) %>%
+      hc_plotOptions(column = list(stacking = "normal",
+                                   borderWidth = 0,
+                                   pointWidth = 55,
+                                   dataLabels = list(enabled = TRUE,
+                                                     borderWidth = 0,
+                                                     format = '{point.percentage:.0f}%',
+                                                     style = list(textShadow = FALSE,
+                                                                  fontSize = "16px", fontFamily = "Assistant",
+                                                                  fontWeight = "normal",
+                                                                  textOutline = "none")
+                                   ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "center", layout = "vertical", verticalAlign = "top",
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+    
+  })
+  
+  
+  serverTextDisplay.time.series("policymakingCombined_trend_sample", textContent.time.series)
+  
+  ###########################################################################################################################################
+  # 11th plots of Trend Analysis: Current and future outlook of organizational digital privacy practices (Europe)
+  ###########################################################################################################################################
+  # Q: state_current_pra
+  # Overall, how would you rate organizations’ digital privacy policies and practices in [the U.S. / the EU / country] today?
+  # ●	Excellent
+  # ●	Good
+  # ●	Fair
+  # ●	Poor
+  # Q: state_outlook_practice
+  # In the next few years, how optimistic or pessimistic are you that organizations’ digital privacy policies and practices in [the U.S. / the EU / country] will move in the direction you prefer?
+  # ●	Very optimistic
+  # ●	Somewhat optimistic
+  # ●	Neither optimistic nor pessimistic
+  # ●	Somewhat pessimistic
+  # ●	Very pessimistic
+  
+  # Europe
+  output$state_current_pra_chart_Europe <- renderHighchart({
+    highchart() %>%
+      hc_chart(type = "column",
+               height = 400,
+               marginTop = 120) %>%
+      hc_title(text = "<b>Current State</b>", margin = 1,
+               align = "center",
+               style = list(color = "black", useHTML = TRUE)) %>%
+      hc_subtitle(text = "<i>Question: Overall, how would you rate organizations' digital privacy policies
+                and practices in the EU today?</i>",
+                  align = "center",
+                  style = list(color = "black", fontSize = "13px", useHTML = TRUE)) %>%
+      hc_xAxis(categories = unique(state_current_pra_Europe$category_n),
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "Good/Excellent", data = state_current_pra_Europe$Value[state_current_pra_Europe$Rating == "Good/Excellent"], color = '#244775',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_add_series(name = "Poor/Fair", data = state_current_pra_Europe$Value[state_current_pra_Europe$Rating == "Poor/Fair"], color = '#FCDC97',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 1) %>%
+      hc_plotOptions(column = list(stacking = "normal",
+                                   borderWidth = 0,
+                                   pointWidth = 55,
+                                   groupPadding = 0.1, # reduce the space between groups of columns
+                                   pointPadding = 0.1, # reduce the space between individual columns within the same group
+                                   dataLabels = list(enabled = TRUE,
+                                                     borderWidth = 0,
+                                                     format = '{point.percentage:.0f}%',
+                                                     style = list(textShadow = FALSE,
+                                                                  fontSize = "16px", fontFamily = "Assistant",
+                                                                  fontWeight = "normal",
+                                                                  textOutline = "none")
+                                   ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "right", layout = "vertical", verticalAlign = "middle", useHTML = TRUE,
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+  })
+  
+  output$state_outlook_pra_chart_Europe <- renderHighchart({
+    
+    highchart() %>%
+      hc_chart(type = "column",
+               height = 400,
+               marginTop = 120) %>%
+      hc_title(text = "<b>Future Outlook</b>", margin = 1,
+               align = "center",
+               style = list(color = "black", useHTML = TRUE)) %>%
+      hc_subtitle(text = "<i>Question: In the next few years, how optimistic or pessimistic are you that
+                organizations' digital privacy policies and practices in the US will move in the direction you prefer?</i>",
+                  align = "center",
+                  style = list(color = "black", fontSize = "13px", useHTML = TRUE)) %>%
+      hc_xAxis(categories = unique(state_outlook_pra_Europe$category_n),
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "(Somewhat/Very)<br>optimistic", data = state_outlook_pra_Europe$Value[state_outlook_pra_Europe$Rating == "(Somewhat/Very) optimistic"], color = '#244775',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_add_series(name = "Neither", data = state_outlook_pra_Europe$Value[state_outlook_pra_Europe$Rating == "Neither"], color = '#7F956B',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 1) %>%
+      hc_add_series(name = "(Very/Somewhat)<br>pessimistic", data = state_outlook_pra_Europe$Value[state_outlook_pra_Europe$Rating == "(Very/Somewhat) pessimistic"], color = '#FCDC97',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 2) %>%
+      hc_plotOptions(column = list(stacking = "normal",
+                                   borderWidth = 0,
+                                   pointWidth = 55,
+                                   groupPadding = 0.1, # reduce the space between groups of columns
+                                   pointPadding = 0.1, # reduce the space between individual columns within the same group
+                                   dataLabels = list(enabled = TRUE,
+                                                     borderWidth = 0,
+                                                     format = '{point.percentage:.0f}%',
+                                                     style = list(textShadow = FALSE,
+                                                                  fontSize = "16px", fontFamily = "Assistant",
+                                                                  fontWeight = "normal",
+                                                                  textOutline = "none")
+                                   ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "right", layout = "vertical", verticalAlign = "middle", useHTML = TRUE,
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+  })
+  
+  serverTextDisplay.time.series("StatePraCombined_EU_sample", textContent.time.series)
+  
+  
+  ###########################################################################################################################################
+  # 11th plots of Trend Analysis: Current and future outlook of organizational digital privacy practices (USA)
+  ###########################################################################################################################################
+  # Q: state_current_pra
+  # Overall, how would you rate organizations’ digital privacy policies and practices in [the U.S. / the EU / country] today?
+  # ●	Excellent
+  # ●	Good
+  # ●	Fair
+  # ●	Poor
+  # Q: state_outlook_practice
+  # In the next few years, how optimistic or pessimistic are you that organizations’ digital privacy policies and practices in [the U.S. / the EU / country] will move in the direction you prefer?
+  # ●	Very optimistic
+  # ●	Somewhat optimistic
+  # ●	Neither optimistic nor pessimistic
+  # ●	Somewhat pessimistic
+  # ●	Very pessimistic
+  
+  # Europe
+  output$state_current_pra_chart_USA <- renderHighchart({
+    highchart() %>%
+      hc_chart(type = "column",
+               height = 400,
+               marginTop = 120) %>%
+      hc_title(text = "<b>Current State</b>", margin = 1,
+               align = "center",
+               style = list(color = "black", useHTML = TRUE)) %>%
+      hc_subtitle(text = "<i>Question: Overall, how would you rate organizations' digital privacy policies
+                and practices in the US today?</i>",
+                  align = "center",
+                  style = list(color = "black", fontSize = "13px", useHTML = TRUE)) %>%
+      hc_xAxis(categories = unique(state_current_pra_USA$category_n),
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "Good/Excellent", data = state_current_pra_USA$Value[state_current_pra_USA$Rating == "Good/Excellent"], color = '#244775',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_add_series(name = "Poor/Fair", data = state_current_pra_USA$Value[state_current_pra_USA$Rating == "Poor/Fair"], color = '#FCDC97',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 1) %>%
+      hc_plotOptions(column = list(stacking = "normal",
+                                   borderWidth = 0,
+                                   pointWidth = 55,
+                                   groupPadding = 0.1, # reduce the space between groups of columns
+                                   pointPadding = 0.1, # reduce the space between individual columns within the same group
+                                   dataLabels = list(enabled = TRUE,
+                                                     borderWidth = 0,
+                                                     format = '{point.percentage:.0f}%',
+                                                     style = list(textShadow = FALSE,
+                                                                  fontSize = "16px", fontFamily = "Assistant",
+                                                                  fontWeight = "normal",
+                                                                  textOutline = "none")
+                                   ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "right", layout = "vertical", verticalAlign = "middle", useHTML = TRUE,
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+  })
+  
+  output$state_outlook_pra_chart_USA <- renderHighchart({
+    
+    highchart() %>%
+      hc_chart(type = "column",
+               height = 400,
+               marginTop = 120) %>%
+      hc_title(text = "<b>Future Outlook</b>", margin = 1,
+               align = "center",
+               style = list(color = "black", useHTML = TRUE)) %>%
+      hc_subtitle(text = "<i>Question: In the next few years, how optimistic or pessimistic are you that
+                digital privacy laws and regulations in the EU will move in the
+                direction you prefer?</i>",
+                  align = "center",
+                  style = list(color = "black", fontSize = "13px", useHTML = TRUE)) %>%
+      hc_xAxis(categories = unique(state_outlook_pra_USA$category_n),
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "(Somewhat/Very)<br>optimistic", data = state_outlook_pra_USA$Value[state_outlook_pra_USA$Rating == "(Somewhat/Very) optimistic"], color = '#244775',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_add_series(name = "Neither", data = state_outlook_pra_USA$Value[state_outlook_pra_USA$Rating == "Neither"], color = '#7F956B',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 1) %>%
+      hc_add_series(name = "(Very/Somewhat)<br>pessimistic", data = state_outlook_pra_USA$Value[state_outlook_pra_USA$Rating == "(Very/Somewhat) pessimistic"], color = '#FCDC97',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 2) %>%
+      hc_plotOptions(column = list(stacking = "normal",
+                                   borderWidth = 0,
+                                   pointWidth = 55,
+                                   groupPadding = 0.1, # reduce the space between groups of columns
+                                   pointPadding = 0.1, # reduce the space between individual columns within the same group
+                                   dataLabels = list(enabled = TRUE,
+                                                     borderWidth = 0,
+                                                     format = '{point.percentage:.0f}%',
+                                                     style = list(textShadow = FALSE,
+                                                                  fontSize = "16px", fontFamily = "Assistant",
+                                                                  fontWeight = "normal",
+                                                                  textOutline = "none")
+                                   ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "right", layout = "vertical", verticalAlign = "middle", useHTML = TRUE,
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+  })
+  
+  serverTextDisplay.time.series("StatePraCombined_USA_sample", textContent.time.series)
   
   ###########################################################################################################################################
   # 1st Plot of Wave 3: Generative AI’s influence on stakeholder views of privacy policy
@@ -759,13 +1606,13 @@ server <- function(input, output, session) {
                labels = list(style = list(fontSize = "14px", color = "black")),
                lineColor = "lightgrey") %>%
       hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
-      hc_add_series(name = "Europe <br> (n = 44)", data = wave3_yes$share[wave3_yes$region == "Europe <br> (n = 44)"],
+      hc_add_series(name = "Europe<br>(n = 23)", data = wave3_yes$share[wave3_yes$region == "Europe<br>(n = 23)"],
                     color = '#4B77C5',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
                     legendIndex = 0) %>%
-      hc_add_series(name = "USA <br>(n = 35)", data = wave3_yes$share[wave3_yes$region == "USA <br>(n = 35)"],
+      hc_add_series(name = "USA<br>(n = 24)", data = wave3_yes$share[wave3_yes$region == "USA<br>(n = 24)"],
                     color = '#7F956B',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
@@ -1402,13 +2249,13 @@ server <- function(input, output, session) {
                labels = list(style = list(fontSize = "14px", color = "black")),
                lineColor = "lightgrey") %>%
       hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
-      hc_add_series(name = "Europe <br> (n = 41)", data = orgs_rating_priv.5$Share[orgs_rating_priv.5$category == "Europe <br> (n = 41)"],
+      hc_add_series(name = "Europe<br>(n = 43)", data = orgs_rating_priv.5$Share[orgs_rating_priv.5$category == "Europe<br>(n = 43)"],
                     color = '#4B77C5',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
                     legendIndex = 0) %>%
-      hc_add_series(name = "USA <br>(n = 33)", data = orgs_rating_priv.5$Share[orgs_rating_priv.5$category == "USA <br>(n = 33)"],
+      hc_add_series(name = "USA<br>(n = 33)", data = orgs_rating_priv.5$Share[orgs_rating_priv.5$category == "USA<br>(n = 33)"],
                     color = '#7F956B',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
@@ -1453,13 +2300,13 @@ server <- function(input, output, session) {
                labels = list(style = list(fontSize = "14px", color = "black")),
                lineColor = "lightgrey") %>%
       hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
-      hc_add_series(name = "Europe <br> (n = 41)", data = orgs_rating_priv.6$Share[orgs_rating_priv.6$category == "Europe <br> (n = 41)"],
+      hc_add_series(name = "Europe<br>(n = 43)", data = orgs_rating_priv.6$Share[orgs_rating_priv.6$category == "Europe<br>(n = 43)"],
                     color = '#4B77C5',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
                     legendIndex = 0) %>%
-      hc_add_series(name = "USA <br>(n = 33)", data = orgs_rating_priv.6$Share[orgs_rating_priv.6$category == "USA <br>(n = 33)"],
+      hc_add_series(name = "USA<br>(n = 34)", data = orgs_rating_priv.6$Share[orgs_rating_priv.6$category == "USA<br>(n = 34)"],
                     color = '#7F956B',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
@@ -1667,7 +2514,7 @@ server <- function(input, output, session) {
                                       format = '{point.y:.0f}%'),
                     legendIndex = 1) %>%
       hc_add_series(name = "Both", data = policymaking_EU$Value[policymaking_EU$Area == "Both"], color = '#7F956B',
-                    dataLabels = list(color = "black",
+                    dataLabels = list(color = "white",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
                     legendIndex = 2) %>%
@@ -2380,13 +3227,13 @@ server <- function(input, output, session) {
                labels = list(style = list(fontSize = "14px", color = "black")),
                lineColor = "lightgrey") %>%
       hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
-      hc_add_series(name = "Europe <br> (n = 30)", data = ai_compliance$share[ai_compliance$region == "Europe <br> (n = 30)"],
+      hc_add_series(name = "Europe<br>(n = 30)", data = ai_compliance$share[ai_compliance$region == "Europe<br>(n = 30)"],
                     color = '#4B77C5',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
                     legendIndex = 0) %>%
-      hc_add_series(name = "USA <br>(n = 18)", data = ai_compliance$share[ai_compliance$region == "USA <br>(n = 18)"],
+      hc_add_series(name = "USA<br>(n = 18)", data = ai_compliance$share[ai_compliance$region == "USA<br>(n = 18)"],
                     color = '#7F956B',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
@@ -2477,13 +3324,13 @@ server <- function(input, output, session) {
                labels = list(style = list(fontSize = "14px", color = "black")),
                lineColor = "lightgrey") %>%
       hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
-      hc_add_series(name = "Europe <br> (n = 11)", data = ai_challenge_plan$share[ai_challenge_plan$region_combined == "Europe <br> (n = 11)"],
+      hc_add_series(name = "Europe<br>(n = 11)", data = ai_challenge_plan$share[ai_challenge_plan$region_combined == "Europe<br>(n = 11)"],
                     color = '#4B77C5',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
                     legendIndex = 0) %>%
-      hc_add_series(name = "USA <br>(n = 3)", data = ai_challenge_plan$share[ai_challenge_plan$region_combined == "USA <br>(n = 3)"],
+      hc_add_series(name = "USA<br>(n = 3)", data = ai_challenge_plan$share[ai_challenge_plan$region_combined == "USA<br>(n = 3)"],
                     color = '#7F956B',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),
@@ -2567,6 +3414,206 @@ server <- function(input, output, session) {
   })
   
   serverTextDisplay.wave4("ai_responsible_sample", textContent.wave4)
+  
+  ###########################################################################################################################################
+  # 1st plots of Wave 5: Ranking approaches to protecting digital privacy
+  ###########################################################################################################################################
+  ############# Q: priorities (wave 5)
+  # How would you rank the importance of the following approaches to protecting people’s digital privacy?
+  # priorities_techsolutions = Designing and deploying privacy-preserving technology
+  # priorities_processing = Regulating how data is processed, stored and shared
+  # priorities_enforcement = Enforcing rules about how data is processed, stored and shared
+  # priorities_control = Giving individuals control over their data
+  # priorities_adaptlaw = Adapting privacy laws to respond to current technological developments
+  
+  output$priorities_w5_Europe <- renderHighchart({
+    highchart() %>%
+      hc_chart(type = "bar",
+               height = 400,
+               marginTop = 130) %>%
+      hc_title(text = "<b>Europe</b>", margin = 1,
+               align = "center",
+               style = list(color = "black", useHTML = TRUE)) %>%
+      hc_xAxis(categories = unique(priorities_w5_Europe$priorities_short),
+               labels = list(style = list(fontSize = "12px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "Rank 5: Least important", data = priorities_w5_Europe$Value[priorities_w5_Europe$Important == "Rank 5 (Least important)"], color = '#D9E0D2',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 4) %>%
+      hc_add_series(name = "Rank 4", data = priorities_w5_Europe$Value[priorities_w5_Europe$Important == "Rank 4"], color = '#B4C7A4',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 3) %>%
+      hc_add_series(name = "Rank 3", data = priorities_w5_Europe$Value[priorities_w5_Europe$Important == "Rank 3"], color = '#7F956B',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 2) %>%
+      hc_add_series(name = "Rank 2", data = priorities_w5_Europe$Value[priorities_w5_Europe$Important == "Rank 2"], color = '#51704A',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 1) %>%
+      hc_add_series(name = "Rank 1: Most important", data = priorities_w5_Europe$Value[priorities_w5_Europe$Important == "Rank 1 (Most important)"], color = '#30482D',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_plotOptions(bar = list(stacking = "normal",
+                                borderWidth = 0,
+                                pointWidth = 25,
+                                groupPadding = 0.1, 
+                                pointPadding = 0.1,
+                                dataLabels = list(enabled = TRUE,
+                                                  borderWidth = 0,
+                                                  format = '{point.percentage:.0f}%',
+                                                  style = list(textShadow = FALSE,
+                                                               fontSize = "16px", fontFamily = "Assistant",
+                                                               fontWeight = "normal",
+                                                               textOutline = "none")
+                                ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "center", layout = "horizontal", verticalAlign = "top",
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+  })
+  
+  
+  output$priorities_w5_USA <- renderHighchart({
+    highchart() %>%
+      hc_chart(type = "bar",
+               height = 400,
+               marginTop = 130) %>%
+      hc_title(text = "<b>USA</b>", margin = 1,
+               align = "center",
+               style = list(color = "black", useHTML = TRUE)) %>%
+      hc_xAxis(categories = unique(priorities_w5_USA$priorities_short),
+               labels = list(style = list(fontSize = "12px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "Rank 5: Least important", data = priorities_w5_USA$Value[priorities_w5_USA$Important == "Rank 5 (Least important)"], color = '#D9E0D2',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 4) %>%
+      hc_add_series(name = "Rank 4", data = priorities_w5_USA$Value[priorities_w5_USA$Important == "Rank 4"], color = '#B4C7A4',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 3) %>%
+      hc_add_series(name = "Rank 3", data = priorities_w5_USA$Value[priorities_w5_USA$Important == "Rank 3"], color = '#7F956B',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 2) %>%
+      hc_add_series(name = "Rank 2", data = priorities_w5_USA$Value[priorities_w5_USA$Important == "Rank 2"], color = '#51704A',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 1) %>%
+      hc_add_series(name = "Rank 1: Most important", data = priorities_w5_USA$Value[priorities_w5_USA$Important == "Rank 1 (Most important)"], color = '#30482D',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_plotOptions(bar = list(stacking = "normal",
+                                borderWidth = 0,
+                                pointWidth = 25,
+                                groupPadding = 0.1, 
+                                pointPadding = 0.1,
+                                dataLabels = list(enabled = TRUE,
+                                                  borderWidth = 0,
+                                                  format = '{point.percentage:.0f}%',
+                                                  style = list(textShadow = FALSE,
+                                                               fontSize = "16px", fontFamily = "Assistant",
+                                                               fontWeight = "normal",
+                                                               textOutline = "none")
+                                ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "center", layout = "horizontal", verticalAlign = "top",
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+  })
+  
+  serverTextDisplay.wave5("priorities_w5_sample", textContent.wave5)
+  
+  ###########################################################################################################################################
+  # 2nd plots of Wave 5: 
+  ###########################################################################################################################################
+  ############# Q: EU_AI_act
+  # Question: In your opinion, will the EU AI Act be more likely to enable or hinder AI innovation?
+  # Answers:
+  # More likely to enable
+  # Neither enable nor hinder
+  # More likely to hinder
+  # Don't know
+  
+  
+  output$EU_AI_act_chart <- renderHighchart({
+    highchart() %>%
+      hc_chart(type = "column",
+               height = 400,
+               marginTop = 120) %>%
+      hc_xAxis(categories = unique(EU_AI_act$category_n),
+               labels = list(style = list(fontSize = "14px", color = "black")),
+               lineColor = "lightgrey") %>%
+      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+      hc_add_series(name = "More likely to enable", data = EU_AI_act$Value[EU_AI_act$Answer == "More likely to enable"], color = '#071A2D',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 0) %>%
+      hc_add_series(name = "Neither enable nor hinder", data = EU_AI_act$Value[EU_AI_act$Answer == "Neither enable nor hinder"], color = '#244775',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 1) %>%
+      hc_add_series(name = "More likely to hinder", data = EU_AI_act$Value[EU_AI_act$Answer == "More likely to hinder"], color = '#7F956B',
+                    dataLabels = list(color = "white",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 2) %>%
+      hc_add_series(name = "Don't know", data = EU_AI_act$Value[EU_AI_act$Answer == "Don't know"], color = '#FCDC97',
+                    dataLabels = list(color = "black",
+                                      style = list(fontWeight = "normal"),
+                                      format = '{point.y:.0f}%'),
+                    legendIndex = 2) %>%
+      hc_plotOptions(column = list(stacking = "normal",
+                                   borderWidth = 0,
+                                   pointWidth = 55,
+                                   groupPadding = 0.1, # reduce the space between groups of columns
+                                   pointPadding = 0.1, # reduce the space between individual columns within the same group
+                                   dataLabels = list(enabled = TRUE,
+                                                     borderWidth = 0,
+                                                     format = '{point.percentage:.0f}%',
+                                                     style = list(textShadow = FALSE,
+                                                                  fontSize = "16px", fontFamily = "Assistant",
+                                                                  fontWeight = "normal",
+                                                                  textOutline = "none")
+                                   ))) %>%
+      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+      hc_legend(align = "center", layout = "vertical", verticalAlign = "top",
+                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                 color= "black")) %>%
+      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+    
+  })
+  
+  serverTextDisplay.wave5("EU_AI_act_sample", textContent.wave5)
+  
+  
   
   ################################################################################################   
   

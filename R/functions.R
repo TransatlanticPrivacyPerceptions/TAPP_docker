@@ -20,8 +20,13 @@ textContent.time.series <- "<strong>Overview of Expert Demographics:</strong>   
               </tr>
               <tr>
                 <td>August 2023</td>
-                <td>Academics: 27<br>Practitioners<strong>*</strong>: 14<br>Average Years of Experience in Digital Privacy: > 10 years</td>
-                <td>Academics: 22<br>Practitioners<strong>*</strong>: 11<br>Average Years of Experience in Digital Privacy: > 10 years</td>
+                <td>Academics: 29<br>Practitioners<strong>*</strong>: 14<br>Average Years of Experience in Digital Privacy: > 10 years</td>
+                <td>Academics: 22<br>Practitioners<strong>*</strong>: 12<br>Average Years of Experience in Digital Privacy: > 10 years</td>
+              </tr>
+              <tr>
+                <td>August 2024</td>
+                <td>Academics: 12<br>Practitioners<strong>*</strong>: 32<br>Average Years of Experience in Digital Privacy: > 10 years</td>
+                <td>Academics: 11<br>Practitioners<strong>*</strong>: 11<br>Average Years of Experience in Digital Privacy: > 10 years</td>
               </tr>
             </tbody>
           </table>
@@ -65,8 +70,8 @@ textContent.wave2 <- "<strong>Overview of Expert Demographics:</strong>      <br
             <tbody>
               <tr>
                 <td>August 2023</td>
-                <td>Academics: 27<br>Practitioners<strong>*</strong>: 14<br>Average Years of Experience in Digital Privacy:  > 10 years</td>
-                <td>Academics: 22<br>Practitioners<strong>*</strong>: 11<br>Average Years of Experience in Digital Privacy:  > 10 years</td>
+                <td>Academics: 29<br>Practitioners<strong>*</strong>: 14<br>Average Years of Experience in Digital Privacy:  > 10 years</td>
+                <td>Academics: 22<br>Practitioners<strong>*</strong>: 12<br>Average Years of Experience in Digital Privacy:  > 10 years</td>
               </tr>
             </tbody>
           </table>
@@ -87,8 +92,8 @@ textContent.wave3 <- "<strong>Overview of Expert Demographics:</strong>      <br
             <tbody>
               <tr>
                 <td>December 2023</td>
-                <td>Academics: 23<br>Practitioners<strong>*</strong>: 21<br>Average Years of Experience in Digital Privacy:  > 10 years</td>
-                <td>Academics: 24<br>Practitioners<strong>*</strong>: 11<br>Average Years of Experience in Digital Privacy:  > 10 years</td>
+                <td>Academics: 24<br>Practitioners<strong>*</strong>: 21<br>Average Years of Experience in Digital Privacy:  > 10 years</td>
+                <td>Academics: 24<br>Practitioners<strong>*</strong>: 9<br>Average Years of Experience in Digital Privacy:  > 10 years</td>
               </tr>
             </tbody>
           </table>
@@ -110,6 +115,28 @@ textContent.wave4 <- "<strong>Overview of Expert Demographics:</strong>      <br
                 <td>May 2024</td>
                 <td>Academics: 18<br>Practitioners<strong>*</strong>: 30</td>
                 <td>Academics: 15<br>Practitioners<strong>*</strong>: 14</td>
+              </tr>
+            </tbody>
+          </table>
+<strong>*Practitioners include experts from:</strong> Tech industry, Non-Tech industry, Government, Journalism, Law, Non-profit / NGO / Think tank  <br/>
+              "
+
+
+textContent.wave5 <- "<strong>Overview of Expert Demographics:</strong>      <br/>
+<br/>
+<table class='table table-bordered'>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Europe</th>
+                <th>USA</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>August 2024</td>
+                <td>Academics: 12<br>Practitioners<strong>*</strong>: 32<br>Average Years of Experience in Digital Privacy:  > 10 years</td>
+                <td>Academics: 11<br>Practitioners<strong>*</strong>: 11<br>Average Years of Experience in Digital Privacy:  > 10 years</td>
               </tr>
             </tbody>
           </table>

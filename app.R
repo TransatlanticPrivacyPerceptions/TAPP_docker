@@ -23,7 +23,6 @@ ui<- fluidPage(id="top",
                  mobileDetect('isMobile')
                ),
                tabItems(erstelleTab_front())
-               
 )
 
 # Server Function
@@ -3330,7 +3329,7 @@ server <- function(input, output, session) {
                                       style = list(fontWeight = "normal"),
                                       format = '{point.y:.0f}%'),
                     legendIndex = 0) %>%
-      hc_add_series(name = "USA<br>(n = 3)", data = ai_challenge_plan$share[ai_challenge_plan$region_combined == "USA<br>(n = 3)"],
+      hc_add_series(name = "USA<br>(n = 2)", data = ai_challenge_plan$share[ai_challenge_plan$region_combined == "USA<br>(n = 2)"],
                     color = '#7F956B',
                     dataLabels = list(color = "black",
                                       style = list(fontWeight = "normal"),

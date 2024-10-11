@@ -114,7 +114,7 @@ textContent.wave4 <- "<strong>Overview of Expert Demographics:</strong>      <br
               <tr>
                 <td>May 2024</td>
                 <td>Academics: 18<br>Practitioners<strong>*</strong>: 30</td>
-                <td>Academics: 15<br>Practitioners<strong>*</strong>: 14</td>
+                <td>Academics: 15<br>Practitioners<strong>*</strong>: 13</td>
               </tr>
             </tbody>
           </table>

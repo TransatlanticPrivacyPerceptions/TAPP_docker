@@ -72,7 +72,7 @@ erstelleTab_front <- function() {
                                                         h4(HTML("Adapting privacy laws to technological developments")),
                                                         h5(HTML("<i>Question: How would you rank the importance of the following approaches to protecting people’s digital privacy?<br>Ranked as most important: Adapting privacy laws to technological developments
                                                                </i>")
-                                                        )),
+                                                 )),
                                                  column(width = 6,
                                                         highchartOutput("priorities_chart_approach_1_EU")
                                                  ),
@@ -139,7 +139,7 @@ erstelleTab_front <- function() {
                                                  column(width = 12,
                                                         h3(HTML("Current and future outlook of digital privacy laws in Europe")),
                                                         # h4(HTML("...")),
-                                                 ),
+                                                        ),
                                                  column(width = 6,
                                                         highchartOutput("StatelawCurrent_Europe")
                                                  ),
@@ -217,7 +217,7 @@ erstelleTab_front <- function() {
                                                )
                                                
                                       ),
-                                      tabPanel(title = "Wave 5 (August 2024)", ##### WAVE 5
+                                      tabPanel(title = "Wave 5 (September 2024)", ##### WAVE 5
                                                fluidRow(
                                                  column(width = 12,
                                                         h3(HTML("Impact of the EU AI Act on AI innovation")),
@@ -351,7 +351,7 @@ erstelleTab_front <- function() {
                                                         actionButton("toggleText.ai_responsible_sample", "Show/Hide Sample Details"),
                                                         uiOutput("interpretation.ai_responsible_sample"))
                                                )
-                                      ),
+                                               ),
                                       tabPanel(title = "Wave 3 (December 2023)", #####  WAVE 3
                                                fluidRow(
                                                  column(width = 12,
@@ -383,6 +383,73 @@ erstelleTab_front <- function() {
                                                
                                       ),
                                       tabPanel(title = "Wave 2 (August 2023)", ############# WAVE 2
+                                               # Question 10
+                                               # fluidRow(
+                                               #   column(width = 12,
+                                               #          h3(HTML("Balance of interest in digital privacy laws")),
+                                               #          h4(HTML("Stakeholders perceive stronger support for businesses in USA")),
+                                               #          h5(HTML("<i>Question: Do you think digital privacy laws and regulations in your region [of expertise]
+                                               #                  more strongly favor the rights and needs of businesses or of individual users?</i>"))
+                                               #   ),
+                                               #   column(width = 6,
+                                               #          highchartOutput("plot_law_favor_tech")
+                                               #   ),
+                                               #   column( width= 4,
+                                               #           actionButton("toggleText.tech_sample", "Show/Hide Sample Details"),
+                                               #           uiOutput("interpretation.tech_sample")
+                                               #   )
+                                               # ),
+                                               # Question 11
+                                               # fluidRow(
+                                               #   column(width = 12,
+                                               #          h3(HTML("Influence of laws on development of privacy-preserving practices and technologies")),
+                                               #          h4(HTML("Stakeholders perceive European laws as more innovation friendly")),
+                                               #          h5(HTML("<i>Question: Do you think digital privacy laws and regulations in your region [of expertise]
+                                               #                  encourage or discourage innovation and development of privacy-preserving practices and technologies in organizations?</i>"))
+                                               #   ),
+                                               #   column(width = 6,
+                                               #          highchartOutput("plot_law_innovation")
+                                               #   ),
+                                               #   column( width= 4,
+                                               #           actionButton("toggleText.innovation_sample", "Show/Hide Sample Details"),
+                                               #           uiOutput("interpretation.innovation_sample")
+                                               #   )
+                                               # ),
+                                               # Question 16+ 17
+                                               # fluidRow(
+                                               #   column(width=12,  
+                                               #          h3(HTML("Current and future outlook of digital privacy laws")),
+                                               #          h4(HTML("European stakeholders more optimistic than USA, but both anticipate improvements"))
+                                               #   ),
+                                               #   column(width = 6,
+                                               #          highchartOutput("StatelawCurrent")
+                                               #   ),
+                                               #   column(width = 6,
+                                               #          highchartOutput("StatelawFuture")
+                                               #   ),
+                                               #   column( width= 4,
+                                               #           actionButton("toggleText.StatelawCombined_sample", "Show/Hide Sample Details"),
+                                               #           uiOutput("interpretation.StatelawCombined_sample")
+                                               #   )
+                                               # ),
+                                               # Question 26 + 27 combined
+                                               # fluidRow(
+                                               #   column(width = 12,
+                                               #          h3(HTML("Current and future outlook of organizational digital privacy practices")),
+                                               #          h4(HTML("European stakeholders more optimistic than USA, but both anticipate improvements"))
+                                               #          ),
+                                               #   column(width = 6,
+                                               #          highchartOutput("StatePraCurrent")
+                                               #   ),
+                                               #   column(width = 6,
+                                               #          highchartOutput("StatePraFuture")
+                                               #   ),
+                                               #   column( width= 4,
+                                               #           actionButton("toggleText.StatePraCombined_sample", "Show/Hide Sample Details"),
+                                               #           uiOutput("interpretation.StatePraCombined_sample")
+                                               #   )
+                                               # ),
+                                               # model_input
                                                fluidRow( 
                                                  column(width = 12,
                                                         h3(HTML("Consumer privacy law requirements"))),
@@ -452,6 +519,23 @@ erstelleTab_front <- function() {
                                                         uiOutput("interpretation.priorities_w2_sample"))
                                                ),
                                                
+                                               # Question 18 + 19 combined
+                                               # fluidRow(
+                                               #   column(width = 12,
+                                               #          h3(HTML("Policymaking approaches in digital privacy protection")),
+                                               #          h4(HTML("Stakeholders advocate policymaking at highest levels of government possible")),
+                                               #          h5(HTML("<i>Question: Do you think that digital privacy policy in your region should be made at the …</i>"))),
+                                               #   column(width = 4,
+                                               #          highchartOutput("policymaking_chart_Europe")
+                                               #   ),
+                                               #   column(width = 4,
+                                               #          highchartOutput("policymaking_chart_USA")
+                                               #   ),
+                                               #   column( width= 4,
+                                               #           actionButton("toggleText.policymakingCombined_sample", "Show/Hide Sample Details"),
+                                               #           uiOutput("interpretation.policymakingCombined_sample")
+                                               #   )
+                                               # )
                                       ),
                                       tabPanel(title = "Wave 1 (October 2022)",
                                                
@@ -488,7 +572,7 @@ erstelleTab_front <- function() {
                                                  column(width = 12,
                                                         h3(HTML("Current and future outlook of digital privacy laws")),
                                                         h4(HTML("Europeans more satisfied with current laws, but Americans more optimistic for future"))
-                                                 ),
+                                                        ),
                                                  column(width = 6,
                                                         highchartOutput("StateCurrentW1")
                                                  ),

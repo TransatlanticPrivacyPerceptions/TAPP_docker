@@ -24,7 +24,7 @@ textContent.time.series <- "<strong>Overview of Expert Demographics:</strong>   
                 <td>Academics: 22<br>Practitioners<strong>*</strong>: 12<br>Average Years of Experience in Digital Privacy: > 10 years</td>
               </tr>
               <tr>
-                <td>August 2024</td>
+                <td>September 2024</td>
                 <td>Academics: 12<br>Practitioners<strong>*</strong>: 32<br>Average Years of Experience in Digital Privacy: > 10 years</td>
                 <td>Academics: 11<br>Practitioners<strong>*</strong>: 11<br>Average Years of Experience in Digital Privacy: > 10 years</td>
               </tr>
@@ -134,7 +134,7 @@ textContent.wave5 <- "<strong>Overview of Expert Demographics:</strong>      <br
             </thead>
             <tbody>
               <tr>
-                <td>August 2024</td>
+                <td>September 2024</td>
                 <td>Academics: 12<br>Practitioners<strong>*</strong>: 32<br>Average Years of Experience in Digital Privacy:  > 10 years</td>
                 <td>Academics: 11<br>Practitioners<strong>*</strong>: 11<br>Average Years of Experience in Digital Privacy:  > 10 years</td>
               </tr>

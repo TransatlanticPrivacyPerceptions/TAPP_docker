@@ -1176,7 +1176,7 @@ server <- function(input, output, session) {
       hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
   })
   
-  
+
   serverTextDisplay.time.series("StatelawCombined_USA_sample", textContent.time.series)
   
   ###########################################################################################################################################
@@ -2961,7 +2961,7 @@ server <- function(input, output, session) {
   # ●	Not at all
   # ●	Somewhat
   # ●	A great deal
-  
+
   output$ai_concern_plot <- renderHighchart({
     highchart() %>%
       hc_chart(type = "column",
@@ -3064,7 +3064,7 @@ server <- function(input, output, session) {
   # 4th Plot of Wave 4: AI frameworks and guidelines used by organizations
   ###########################################################################################################################################
   # Which frameworks and guidelines does your organization have for AI use? (e.g., OECD, IEEE, internal proprietary) 
-  
+
   output$ai_framework_use_plot <- renderHighchart({
     highchart() %>%
       hc_chart(type = "column",
@@ -3114,7 +3114,7 @@ server <- function(input, output, session) {
   
   serverTextDisplay.wave4("ai_framework_use_sample", textContent.wave4)
   
-  
+
   ###########################################################################################################################################
   # 5th Plot of Wave 4: Intentions for organizational adoption of AI frameworks and guidelines
   ###########################################################################################################################################
@@ -3354,7 +3354,7 @@ server <- function(input, output, session) {
       hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
     
   })
-  
+
   serverTextDisplay.wave4("ai_challenge_plan_sample", textContent.wave4)
   
   ###########################################################################################################################################
@@ -3544,76 +3544,76 @@ server <- function(input, output, session) {
       hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
   })
   
-  serverTextDisplay.wave5("priorities_w5_sample", textContent.wave5)
-  
-  ###########################################################################################################################################
-  # 2nd plots of Wave 5: 
-  ###########################################################################################################################################
-  ############# Q: EU_AI_act
-  # Question: In your opinion, will the EU AI Act be more likely to enable or hinder AI innovation?
-  # Answers:
-  # More likely to enable
-  # Neither enable nor hinder
-  # More likely to hinder
-  # Don't know
-  
-  
-  output$EU_AI_act_chart <- renderHighchart({
-    highchart() %>%
-      hc_chart(type = "column",
-               height = 400,
-               marginTop = 120) %>%
-      hc_xAxis(categories = unique(EU_AI_act$category_n),
-               labels = list(style = list(fontSize = "14px", color = "black")),
-               lineColor = "lightgrey") %>%
-      hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
-      hc_add_series(name = "More likely to enable", data = EU_AI_act$Value[EU_AI_act$Answer == "More likely to enable"], color = '#071A2D',
-                    dataLabels = list(color = "white",
-                                      style = list(fontWeight = "normal"),
-                                      format = '{point.y:.0f}%'),
-                    legendIndex = 0) %>%
-      hc_add_series(name = "Neither enable nor hinder", data = EU_AI_act$Value[EU_AI_act$Answer == "Neither enable nor hinder"], color = '#244775',
-                    dataLabels = list(color = "white",
-                                      style = list(fontWeight = "normal"),
-                                      format = '{point.y:.0f}%'),
-                    legendIndex = 1) %>%
-      hc_add_series(name = "More likely to hinder", data = EU_AI_act$Value[EU_AI_act$Answer == "More likely to hinder"], color = '#7F956B',
-                    dataLabels = list(color = "white",
-                                      style = list(fontWeight = "normal"),
-                                      format = '{point.y:.0f}%'),
-                    legendIndex = 2) %>%
-      hc_add_series(name = "Don't know", data = EU_AI_act$Value[EU_AI_act$Answer == "Don't know"], color = '#FCDC97',
-                    dataLabels = list(color = "black",
-                                      style = list(fontWeight = "normal"),
-                                      format = '{point.y:.0f}%'),
-                    legendIndex = 2) %>%
-      hc_plotOptions(column = list(stacking = "normal",
-                                   borderWidth = 0,
-                                   pointWidth = 55,
-                                   groupPadding = 0.1, # reduce the space between groups of columns
-                                   pointPadding = 0.1, # reduce the space between individual columns within the same group
-                                   dataLabels = list(enabled = TRUE,
-                                                     borderWidth = 0,
-                                                     format = '{point.percentage:.0f}%',
-                                                     style = list(textShadow = FALSE,
-                                                                  fontSize = "16px", fontFamily = "Assistant",
-                                                                  fontWeight = "normal",
-                                                                  textOutline = "none")
-                                   ))) %>%
-      hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
-      hc_legend(align = "center", layout = "vertical", verticalAlign = "top",
-                symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
-                itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
-                                 color= "black")) %>%
-      hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
-      hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
-    
-  })
-  
-  serverTextDisplay.wave5("EU_AI_act_sample", textContent.wave5)
-  
-  
-  
+   serverTextDisplay.wave5("priorities_w5_sample", textContent.wave5)
+
+   ###########################################################################################################################################
+   # 2nd plots of Wave 5: 
+   ###########################################################################################################################################
+   ############# Q: EU_AI_act
+   # Question: In your opinion, will the EU AI Act be more likely to enable or hinder AI innovation?
+   # Answers:
+   # More likely to enable
+   # Neither enable nor hinder
+   # More likely to hinder
+   # Don't know
+   
+   
+   output$EU_AI_act_chart <- renderHighchart({
+     highchart() %>%
+       hc_chart(type = "column",
+                height = 400,
+                marginTop = 120) %>%
+       hc_xAxis(categories = unique(EU_AI_act$category_n),
+                labels = list(style = list(fontSize = "14px", color = "black")),
+                lineColor = "lightgrey") %>%
+       hc_yAxis(labels = list(enabled = FALSE), gridLineWidth = 0, minorGridLineWidth = 0, lineWidth = 0, tickWidth = 0, max = 100) %>%
+       hc_add_series(name = "More likely to enable", data = EU_AI_act$Value[EU_AI_act$Answer == "More likely to enable"], color = '#071A2D',
+                     dataLabels = list(color = "white",
+                                       style = list(fontWeight = "normal"),
+                                       format = '{point.y:.0f}%'),
+                     legendIndex = 0) %>%
+       hc_add_series(name = "Neither enable nor hinder", data = EU_AI_act$Value[EU_AI_act$Answer == "Neither enable nor hinder"], color = '#244775',
+                     dataLabels = list(color = "white",
+                                       style = list(fontWeight = "normal"),
+                                       format = '{point.y:.0f}%'),
+                     legendIndex = 1) %>%
+       hc_add_series(name = "More likely to hinder", data = EU_AI_act$Value[EU_AI_act$Answer == "More likely to hinder"], color = '#7F956B',
+                     dataLabels = list(color = "white",
+                                       style = list(fontWeight = "normal"),
+                                       format = '{point.y:.0f}%'),
+                     legendIndex = 2) %>%
+       hc_add_series(name = "Don't know", data = EU_AI_act$Value[EU_AI_act$Answer == "Don't know"], color = '#FCDC97',
+                     dataLabels = list(color = "black",
+                                       style = list(fontWeight = "normal"),
+                                       format = '{point.y:.0f}%'),
+                     legendIndex = 2) %>%
+       hc_plotOptions(column = list(stacking = "normal",
+                                    borderWidth = 0,
+                                    pointWidth = 55,
+                                    groupPadding = 0.1, # reduce the space between groups of columns
+                                    pointPadding = 0.1, # reduce the space between individual columns within the same group
+                                    dataLabels = list(enabled = TRUE,
+                                                      borderWidth = 0,
+                                                      format = '{point.percentage:.0f}%',
+                                                      style = list(textShadow = FALSE,
+                                                                   fontSize = "16px", fontFamily = "Assistant",
+                                                                   fontWeight = "normal",
+                                                                   textOutline = "none")
+                                    ))) %>%
+       hc_tooltip(headerFormat = "", pointFormat = "<b>{series.name}</b>: {point.y:.0f}%") %>%
+       hc_legend(align = "center", layout = "vertical", verticalAlign = "top",
+                 symbolHeight = 10, symbolWidth = 10, symbolRadius = 2,
+                 itemStyle = list(fontFamily = "Assistant", fontSize = "15px", fontWeight = "normal",
+                                  color= "black")) %>%
+       hc_chart(events = list(load = JS("function(){this.update({marginBottom: this.legend.legendHeight + 20})}"))) %>%
+       hc_exporting(enabled = FALSE) # set to true if you want the possibility to download the plot
+     
+   })
+   
+   serverTextDisplay.wave5("EU_AI_act_sample", textContent.wave5)
+   
+   
+   
   ################################################################################################   
   
   output$tabelle <- renderDT({

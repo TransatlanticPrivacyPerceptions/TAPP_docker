@@ -1370,7 +1370,7 @@ server <- function(input, output, session) {
                align = "center",
                style = list(color = "black", useHTML = TRUE)) %>%
       hc_subtitle(text = "<i>Question: In the next few years, how optimistic or pessimistic are you that
-                organizations' digital privacy policies and practices in the US will move in the direction you prefer?</i>",
+                organizations' digital privacy policies and practices in the EU will move in the direction you prefer?</i>",
                   align = "center",
                   style = list(color = "black", fontSize = "13px", useHTML = TRUE)) %>%
       hc_xAxis(categories = unique(state_outlook_pra_Europe$category_n),
@@ -1493,7 +1493,7 @@ server <- function(input, output, session) {
                align = "center",
                style = list(color = "black", useHTML = TRUE)) %>%
       hc_subtitle(text = "<i>Question: In the next few years, how optimistic or pessimistic are you that
-                digital privacy laws and regulations in the EU will move in the
+                digital privacy laws and regulations in the US will move in the
                 direction you prefer?</i>",
                   align = "center",
                   style = list(color = "black", fontSize = "13px", useHTML = TRUE)) %>%
